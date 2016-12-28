@@ -3,28 +3,26 @@
   "version": "0.0.1",
   "description": "pin movies worth to watch",
   "main": "index.js",
-
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "jest": {
+    "rootDir": "./src"
   },
-
+  "scripts": {
+    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline",
+    "test": "jest"
+  },
   "keywords": [
     "movies",
     "pin"
   ],
-
   "author": "diablourbano",
   "license": "ISC",
-
-  "scripts": {
-    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline"
-  },
-
   "devDependencies": {
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
+    "enzyme": "^2.7.0",
+    "jest": "^18.0.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-hot-loader": "^3.0.0-beta.6",
