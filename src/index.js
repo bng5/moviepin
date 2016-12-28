@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const render = () => {
+const render = (component) => {
   ReactDOM.render(
-    <h1>MoviePin</h1>,
+    component,
     document.getElementById('root')
   );
 };
