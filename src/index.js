@@ -2,13 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Search from './components/search';
+import SignIn from './components/signin';
+import Join from './components/join';
 
 const render = (component) => {
-  console.log(component)
   ReactDOM.render(
-    <Search/>,
+    component,
     document.getElementById('root')
   );
 };
 
-render(Search)
+render(<Join/>)

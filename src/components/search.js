@@ -3,14 +3,15 @@ import React, { Component } from 'react';
 class Search extends Component {
   render() {
     return (
-      <div className='search'>
-        <form className='b-form'>
-          <input className='b-form__input-box'/>
-          <button className='b-form__search-button'>
-            Search
-          </button>
-        </form>
-      </div>
+      <form className='form'>
+        <fieldset>
+          <input type='text'
+                 className='form__text-input'/>
+          <input type='submit'
+                 className='form__submit--active'
+                 value='Search'/>
+        </fieldset>
+      </form>
     );
   }
 }
