@@ -4,7 +4,9 @@ import SignIn from './signin';
 class Join extends SignIn {
   constructor() {
     super();
+  }
 
+  componentWillMount() {
     this.setState({
       emailValue: ''
     });
@@ -38,7 +40,7 @@ class Join extends SignIn {
 
         {this.passwordField()}
 
-        {this.submitButton('Form')}
+        {this.submitButton('Join')}
         <p>- or -</p>
         <a className='fb-sso'></a>
       </form>

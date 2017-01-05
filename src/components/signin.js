@@ -7,7 +7,7 @@ class SignIn extends Component {
     this.state = {
       usernameValue: '',
       passwordValue: '',
-      disableOrActive: 'disable'
+      disableOrActive: 'disabled'
     };
   }
 
@@ -41,7 +41,7 @@ class SignIn extends Component {
     if (this.shouldActivateSubmitButton()) {
       this.setState({ disableOrActive: 'active' });
     } else {
-      this.setState({ disableOrActive: 'disable' });
+      this.setState({ disableOrActive: 'disabled' });
     }
   }
 

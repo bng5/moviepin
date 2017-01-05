@@ -14,7 +14,7 @@ describe ('SignIn Form', () => {
                   .length).toBe(1)
     expect(wrapper.find('.form .form__text-input[name="password"]')
                   .length).toBe(1)
-    expect(wrapper.find('.form .form__submit--disable').length).toBe(1);
+    expect(wrapper.find('.form .form__submit--disabled').length).toBe(1);
 
     expect(wrapper.find('.form .fb-sso').length).toBe(1);
   });
@@ -23,7 +23,7 @@ describe ('SignIn Form', () => {
     it ('activates signin button if inputs are fill', () => {
       const wrapper = shallow(<SignIn/>);
 
-      expect(wrapper.find('.form .form__submit--disable').length).toBe(1);
+      expect(wrapper.find('.form .form__submit--disabled').length).toBe(1);
       expect(wrapper.find('.form .form__submit--active').length).toBe(0);
 
       const username = wrapper.find('.form .form__text-input[name="username"]');

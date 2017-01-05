@@ -16,7 +16,7 @@ describe('Join Form', () => {
                   .length).toBe(1)
     expect(wrapper.find('.form .form__text-input[name="password"]')
                   .length).toBe(1)
-    expect(wrapper.find('.form .form__submit--disable').length).toBe(1);
+    expect(wrapper.find('.form .form__submit--disabled').length).toBe(1);
 
     expect(wrapper.find('.form .fb-sso').length).toBe(1);
   });
@@ -25,7 +25,7 @@ describe('Join Form', () => {
     it ('activates signin button if inputs are fill', () => {
       const wrapper = shallow(<Join/>);
 
-      expect(wrapper.find('.form .form__submit--disable').length).toBe(1);
+      expect(wrapper.find('.form .form__submit--disabled').length).toBe(1);
       expect(wrapper.find('.form .form__submit--active').length).toBe(0);
 
       const email = wrapper.find('.form .form__text-input[name="email"]');
