@@ -32,7 +32,7 @@ class Join extends Component {
   emailChange(email) {
     this.setState({ emailValue: email });
 
-    const isEmailValid = this.state.emailValue.split('@').length == 2;
+    const isEmailValid = email.split('@').length == 2;
     this.shouldActivateSubmitButton(isEmailValid,
                                     this.state.username,
                                     this.state.passwordValue);

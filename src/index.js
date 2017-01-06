@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import Landing from './views/landing';
 import Search from './components/search';
 import SignIn from './components/signin';
 import Join from './components/join';
@@ -15,4 +16,4 @@ const render = (component) => {
   );
 };
 
-render(<Join/>)
+render(<Landing/>)

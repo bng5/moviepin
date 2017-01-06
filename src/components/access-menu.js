@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Landing extends Component {
+class AccessMenu extends Component {
   render() {
     return (
       <div className='menu menu--inline'>
@@ -11,4 +11,4 @@ class Landing extends Component {
   }
 }
 
-export default Landing;
+export default AccessMenu;
