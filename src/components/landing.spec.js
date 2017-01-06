@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import Landing from './landing';
 
-describe('<Landing>', () => {
+describe ('<Landing>', () => {
 
   it ('renders signin element', () => {
     const wrapper = shallow(<Landing/>);

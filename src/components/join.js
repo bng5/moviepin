@@ -1,9 +1,18 @@
-import React from 'react';
-import SignIn from './signin';
+import React, { Component } from 'react';
 
-class Join extends SignIn {
+import { AccessForm, InputField } from './access-form';
+
+class Join extends Component {
+
   constructor() {
     super();
+
+    this.state = {
+      emailValue: '',
+      usernameValue: '',
+      passwordValue: '',
+      shouldDisable: true
+    };
   }
 
   componentWillMount() {
@@ -12,38 +21,61 @@ class Join extends SignIn {
     });
   }
 
-  emailField() {
-    return <input type='text'
-                  className='form__text-input'
-                  name='email'
-                  value={this.state.emailValue}
-                  onChange={this.emailChange.bind(this)}/>
+  shouldActivateSubmitButton(email, username, password) {
+    if (email, username && password) {
+      this.setState({ shouldDisable: false });
+    } else {
+      this.setState({ shouldDisable: true });
+    }
   }
 
-  shouldActivateSubmitButton() {
+  emailChange(email) {
+    this.setState({ emailValue: email });
+
     const isEmailValid = this.state.emailValue.split('@').length == 2;
-
-    return (super.shouldActivateSubmitButton() && isEmailValid);
+    this.shouldActivateSubmitButton(isEmailValid,
+                                    this.state.username,
+                                    this.state.passwordValue);
   }
 
-  emailChange(event) {
-    this.setState({ emailValue: event.target.value });
-    this.activateSubmitButton();
+  usernameChange(username) {
+    this.setState({ usernameValue: username });
+    this.shouldActivateSubmitButton(this.state.emailValue,
+                                    username,
+                                    this.state.passwordValue);
+  }
+
+  passwordChange(password) {
+    this.setState({ passwordValue: password });
+    this.shouldActivateSubmitButton(this.state.emailValue,
+                                    this.state.usernameValue,
+                                    password);
   }
 
   render() {
     return (
-      <form className='form'>
-        {this.emailField()}
+      <AccessForm submitLabel='Sign In'
+                  shouldDisable={this.state.shouldDisable}>
+        <InputField fieldValue={this.state.emailValue}
+                    inputType='text'
+                    inputName='email'
+                    onChange={(email) => {
+                      this.emailChange(email);
+                    }}/>
+        <InputField fieldValue={this.state.usernameValue}
+                    inputType='text'
+                    inputName='username'
+                    onChange={(username) => {
+                      this.usernameChange(username);
+                    }}/>
 
-        {this.usernameField()}
-
-        {this.passwordField()}
-
-        {this.submitButton('Join')}
-        <p>- or -</p>
-        <a className='fb-sso'></a>
-      </form>
+        <InputField fieldValue={this.state.passwordValue}
+                    inputType='password'
+                    inputName='password'
+                    onChange={(password) => {
+                      this.passwordChange(password)
+                    }}/>
+      </AccessForm>
     );
   }
 }

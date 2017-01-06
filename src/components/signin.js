@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { AccessForm, InputField } from './access-form';
+
 class SignIn extends Component {
   constructor() {
     super();
@@ -7,65 +9,46 @@ class SignIn extends Component {
     this.state = {
       usernameValue: '',
       passwordValue: '',
-      disableOrActive: 'disabled'
+      shouldDisable: true
     };
   }
 
-  usernameField() {
-    return <input type='text'
-                  className='form__text-input'
-                  name='username'
-                  value={this.state.usernameValue}
-                  onChange={this.usernameChange.bind(this)}/>;
-  }
-
-  passwordField() {
-    return <input type='pasword'
-                  className='form__text-input'
-                  name='password'
-                  value={this.state.passwordValue}
-                  onChange={this.passwordChange.bind(this)}/>
-  }
-
-  submitButton(submitLabel='Sign in') {
-    return <input type='submit'
-                  className={'form__submit--' + this.state.disableOrActive}
-                  value={submitLabel}/>
-  }
-
-  shouldActivateSubmitButton() {
-    return (this.state.usernameValue && this.state.passwordValue);
-  }
-
-  activateSubmitButton() {
-    if (this.shouldActivateSubmitButton()) {
-      this.setState({ disableOrActive: 'active' });
+  shouldActivateSubmitButton(username, password) {
+    if (username && password) {
+      this.setState({ shouldDisable: false });
     } else {
-      this.setState({ disableOrActive: 'disabled' });
+      this.setState({ shouldDisable: true });
     }
   }
 
-  usernameChange(event) {
-    this.setState({ usernameValue: event.target.value });
-    this.activateSubmitButton();
+  usernameChange(username) {
+    this.setState({ usernameValue: username });
+    this.shouldActivateSubmitButton(username, this.state.passwordValue);
   }
 
-  passwordChange(event) {
-    this.setState({ passwordValue: event.target.value });
-    this.activateSubmitButton();
+  passwordChange(password) {
+    this.setState({ passwordValue: password });
+    this.shouldActivateSubmitButton(this.state.usernameValue, password);
   }
 
   render() {
     return (
-      <form className='form'>
-        {this.usernameField()}
+      <AccessForm submitLabel='Sign In'
+                  shouldDisable={this.state.shouldDisable}>
+        <InputField fieldValue={this.state.usernameValue}
+                    inputType='text'
+                    inputName='username'
+                    onChange={(username) => {
+                      this.usernameChange(username);
+                    }}/>
 
-        {this.passwordField()}
-
-        <p>- or -</p>
-        {this.submitButton()}
-        <a className='fb-sso'></a>
-      </form>
+        <InputField fieldValue={this.state.passwordValue}
+                    inputType='password'
+                    inputName='password'
+                    onChange={(password) => {
+                      this.passwordChange(password)
+                    }}/>
+      </AccessForm>
     );
   }
 }

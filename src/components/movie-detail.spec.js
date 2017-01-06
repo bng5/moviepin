@@ -22,6 +22,20 @@ describe ('<MovieDetail>', () => {
     expect(nav.find('.card__nav .nav__back').length).toBe(1)
   });
 
+  it ('should render movie details', () => {
+    const wrapper = shallow(<MovieDetail/>);
+
+    expect(wrapper.contains(<p className='movie__detail'>
+                              <span className='movie__detail--year'>
+                                2015
+                              </span>
+                              <span className='movie__detail--genre'>
+                                Drama
+                              </span>
+                            </p>))
+                  .toBe(true)
+  });
+
   it ('should render Staff elements', () => {
     const wrapper = shallow(<MovieDetail/>);
     const directed = wrapper.find('.card--detail')

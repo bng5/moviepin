@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import MovieCard from './movie-card'
 
 class MovieDetailNav extends Component {
   render() {
@@ -28,12 +27,28 @@ class MovieDetailStaff extends Component {
   }
 }
 
-class MovieDetail extends MovieCard {
+class MovieDetail extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      pinit: 'pin'
+    };
+  }
+
+  togglePin() {
+    if (this.state.pinit == 'pin') {
+      this.setState({ pinit: 'unpin' });
+    } else {
+      this.setState({ pinit: 'pin' });
+    }
+  }
+
   cast() {
     let cast = [];
 
     for (let i = 0; i <= 2; i++) {
-      cast.push(<MovieDetailStaff className='cast'/>);
+      cast.push(<MovieDetailStaff key={`actor-${i}`} className='cast'/>);
     }
 
     return cast;
@@ -46,6 +61,11 @@ class MovieDetail extends MovieCard {
           <MovieDetailNav/>
 
           <img className='card__poster' src='./test.jpg'/>
+
+          <p className='movie__detail'>
+            <span className='movie__detail--year'>2015</span>
+            <span className='movie__detail--genre'>Drama</span>
+          </p>
 
           <MovieDetailStaff className='directed-by'/>
           <MovieDetailStaff className='written-by'/>
