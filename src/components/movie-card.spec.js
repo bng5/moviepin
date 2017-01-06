@@ -6,11 +6,11 @@ import MovieCard from './movie-card';
 describe ('<MovieCard>', () => {
   it ('should render MovieCard', () => {
     const wrapper = shallow(<MovieCard/>);
+    const cardPoster = wrapper.find('.card--poster');
 
-    expect(wrapper.find('.card.card--poster').length).toBe(1);
-    expect(wrapper.find('.card--poster .card__poster').length).toBe(1);
-    expect(wrapper.find('.card--poster .card__pin').length).toBe(1)
-    expect(wrapper.find('.headline').length).toBe(1)
+    expect(cardPoster.length).toBe(1);
+    expect(cardPoster.find('.card__poster').length).toBe(1);
+    expect(cardPoster.find('.card__pin').length).toBe(1)
   });
 
   it ('should toggle add and remove movie', () => {
