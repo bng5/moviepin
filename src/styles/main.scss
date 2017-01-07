@@ -1,0 +1,61 @@
+@import 'abstracts/variables';
+@import 'base/base';
+
+@import 'components/menu';
+@import 'components/logo';
+
+.container {
+  background-color: $secondary-color;
+  display: flex;
+  flex-grow: 1;
+  min-height: 100%;
+
+  &--column {
+    flex-direction: column;
+  }
+
+  &--row {
+    flex-direction: row;
+  }
+
+  &--priority {
+    flex-grow: 5;
+  }
+
+  &--align-right {
+    justify-content: flex-end;
+  }
+
+  &--align-center {
+    justify-content: center;
+  }
+
+  &--align-top {
+    align-items: flex-start;
+  }
+
+  &--align-middle {
+    align-items: center;
+  }
+
+  &__headline {
+    color: $primary-color;
+
+    &--landing {
+      font-size: 2.5em;
+      letter-spacing: .25em;
+    }
+
+    &--emphasis {
+      color: $emphasis-color;
+    }
+  }
+}
+
+@media (max-width: $medium) {
+  .container {
+    &--priority {
+      flex-grow: 1;
+    }
+  }
+}

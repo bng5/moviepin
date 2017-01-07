@@ -9,6 +9,6 @@ describe ('renders <LandingView>', () => {
 
     expect(wrapper.find('AccessMenu').length).toBe(1);
     expect(wrapper.find('.logo.logo--landing').length).toBe(1);
-    expect(wrapper.find('.headline.headline--landing').length).toBe(1);
+    expect(wrapper.find('.container__headline--landing').length).toBe(1);
   });
 });

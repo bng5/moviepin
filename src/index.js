@@ -9,6 +9,8 @@ import Menu from './components/menu';
 import MovieCard from './components/movie-card';
 import MovieDetail from './components/movie-detail';
 
+import Styles from './styles/main.scss';
+
 const render = (component) => {
   ReactDOM.render(
     component,

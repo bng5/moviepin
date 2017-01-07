@@ -1,0 +1,22 @@
+.menu {
+  list-style: none;
+
+  &__item {
+    margin-right: 5em;
+    text-align: right;
+
+    &:first-child {
+      margin-bottom: 2em;
+    }
+  }
+
+  &__link {
+    color: $navigation-color;
+    cursor: pointer;
+    font-size: 3em;
+
+    &--emphasis {
+      color: $emphasis-color;
+    }
+  }
+}

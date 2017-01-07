@@ -25,17 +25,17 @@ class Menu extends Component {
            onClick={this.toggleMenu.bind(this)}>Menu</a>
         <ul className={`menu menu--for-user
                         menu--${this.state.menuVisibleState}`}>
-          <li>
+          <li className='menu__item'>
             <a href='/logout' className='menu__link'>
               Profile
             </a>
           </li>
-          <li>
+          <li className='menu__item'>
             <a href='/explore' className='menu__link'>
               Explore
             </a>
           </li>
-          <li>
+          <li className='menu__item'>
             <a href='/logout' className='menu__link'>
               Logout
             </a>
