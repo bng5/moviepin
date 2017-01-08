@@ -23,7 +23,7 @@ class Landing extends Component {
                           ' container--flex--align-center' +
                           ' container--flex--align-top'}>
             <div className='logo logo--landing'>
-              <span className='logo__icon icon-pin3'></span>
+              <span className='logo__icon icon-pin'></span>
               <h1 className='logo__name'>
                 Movie<span className='logo__name--emphasis'>Pin</span>
               </h1>
