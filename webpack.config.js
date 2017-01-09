@@ -40,6 +40,10 @@ module.exports = {
       {
         test: /\.(eot|svg|ttf|woff)$/,
         loader: 'file-loader?name=fonts/[name].[ext]'
+      },
+      {
+        test: /\.(jpg|png)$/,
+        loader: 'file-loader?name=images/[name].[ext]'
       }
     ]
   },
