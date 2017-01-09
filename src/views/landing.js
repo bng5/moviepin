@@ -11,7 +11,8 @@ class Landing extends Component {
       <div className='container'>
         <div className={'container--full-screen' +
                         ' container--flex' +
-                        ' container--flex--column'}>
+                        ' container--flex--column' +
+                        ' container--landing'}>
           <div className={containerRow +
                           ' container--flex--align-right' +
                           ' container--flex--align-middle'}>
@@ -21,18 +22,18 @@ class Landing extends Component {
           <div className={containerRow +
                           ' container--flex--priority' +
                           ' container--flex--align-center' +
-                          ' container--flex--align-top'}>
+                          ' container--flex--align-bottom'}>
             <div className='logo logo--landing'>
-              <span className='logo__icon icon-pin'></span>
+              <span className='logo__icon icon-pin logo--emphasis'></span>
               <h1 className='logo__name'>
-                Movie<span className='logo__name--emphasis'>Pin</span>
+                Movie<span className='logo--emphasis'>Pin</span>
               </h1>
             </div>
           </div>
 
           <div className={containerRow + 
                           ' container--flex--align-center' +
-                          ' container--flex--align-top'}>
+                          ' container--flex--align-middle'}>
             <h2 className='container__headline container__headline--landing'>
               movies
               <span className='container__headline--emphasis'> worth </span>

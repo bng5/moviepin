@@ -1,12 +1,12 @@
 .logo {
-  color: $primary-color;
+  color: $alternative-color;
   text-align: center;
 
   &__icon {
-    font-size: 14em;
+    font-size: 9em;
     left: .4em;
     position: relative;
-    top: .2em;
+    top: .25em;
   }
 
   &__name {
@@ -14,9 +14,9 @@
     font-size: 12em;
     letter-spacing: .015em;
     margin: 0;
+  }
 
-    &--emphasis {
-      color: $emphasis-color;
-    }
+  &--emphasis {
+    color: $emphasis-color;
   }
 }
