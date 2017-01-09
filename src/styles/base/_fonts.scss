@@ -9,26 +9,29 @@
   font-style: normal;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+[class^="icon-"],
+[class*=" icon-"] {
   // use !important to prevent issues with browser extensions that change fonts
   font-family: 'icomoon' !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
 
   //=== Better Font Rendering ===
-  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  speak: none;
+  text-transform: none;
 }
 
-.icon-circle-cross:before {
-  content: "\e900";
-}
+.icon {
 
-.icon-pin:before {
-  content: "\e902";
-}
+  &-circle-cross::before {
+    content: '\e900';
+  }
 
+  &-pin::before {
+    content: '\e902';
+  }
+}

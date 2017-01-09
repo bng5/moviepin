@@ -7,11 +7,11 @@
   &__close {
     color: $emphasis-color;
     cursor: pointer;
-    font-size: 6em;
+    font-size: 4em;
     position: absolute;
     right: .7em;
     text-shadow: $light-shadow;
-    top: .4em;
+    top: .5em;
 
     &:hover {
       color: $alternative-emphasis-color;

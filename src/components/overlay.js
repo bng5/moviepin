@@ -52,7 +52,7 @@ class Overlay extends Component {
            onClick={() => {
              this.toggleOverlay();
            }}>
-          <span className='icon-pin'></span>
+          <span className='icon-circle-cross'></span>
         </a>
 
         {this.props.children}
