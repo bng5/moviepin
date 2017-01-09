@@ -1,78 +1,13 @@
-@import 'abstracts/variables';
 @import 'base/base';
 @import 'base/fonts';
 
+@import 'abstracts/variables';
+@import 'abstracts/animations';
+
+@import 'base/container';
+@import 'base/card';
+
+@import 'components/overlay';
 @import 'components/menu';
 @import 'components/logo';
-
-.container {
-  background-color: $secondary-color;
-
-  &--full-screen {
-    height: 100vh;
-  }
-
-  &--landing {
-    background-image: url('../images/film-poster2.jpg');
-    background-size: cover;
-  }
-
-  &--flex {
-    display: flex;
-    flex-grow: 1;
-
-    &--column {
-      flex-direction: column;
-    }
-
-    &--row {
-      flex-direction: row;
-    }
-
-    &--priority {
-      flex-grow: 2;
-    }
-
-    &--align-right {
-      justify-content: flex-end;
-    }
-
-    &--align-center {
-      justify-content: center;
-    }
-
-    &--align-top {
-      align-items: flex-start;
-    }
-
-    &--align-bottom {
-      align-items: flex-end;
-    }
-
-    &--align-middle {
-      align-items: center;
-    }
-  }
-
-  &__headline {
-    color: $primary-color;
-
-    &--landing {
-      color: $alternative-color;
-      font-size: 2.5em;
-      letter-spacing: .25em;
-    }
-
-    &--emphasis {
-      color: $emphasis-color;
-    }
-  }
-}
-
-@media (max-height: $medium) {
-  .container {
-    &--priority {
-      flex-grow: 1;
-    }
-  }
-}
+@import 'components/access-form';

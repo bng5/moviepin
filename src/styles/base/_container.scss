@@ -1,0 +1,87 @@
+.container {
+  background-color: $secondary-color;
+  overflow: hidden;
+
+  &--full-screen {
+    height: 100vh;
+    width: 100%;
+  }
+
+  &--overlay {
+    position: fixed;
+    z-index: 3;
+  }
+
+  &--landing {
+    background-image: url('../images/film-poster2.jpg');
+    background-size: cover;
+  }
+
+  &--flex {
+    display: flex;
+    flex-grow: 1;
+
+    &--column {
+      flex-direction: column;
+    }
+
+    &--row {
+      flex-direction: row;
+    }
+
+    &--priority {
+      flex-grow: 2;
+    }
+
+    &--align-right {
+      justify-content: flex-end;
+    }
+
+    &--align-center {
+      justify-content: center;
+    }
+
+    &--align-top {
+      align-items: flex-start;
+    }
+
+    &--align-bottom {
+      align-items: flex-end;
+    }
+
+    &--align-middle {
+      align-items: center;
+    }
+  }
+
+  &--content-push {
+    animation: pushContainer 1s forwards;
+
+    &--hidden {
+      animation: pullContainer 1s forwards;
+    }
+  }
+
+  &__headline {
+    color: $primary-color;
+
+    &--landing {
+      color: $alternative-color;
+      font-size: 2.5em;
+      letter-spacing: .25em;
+    }
+
+    &--emphasis {
+      color: $emphasis-color;
+    }
+  }
+}
+
+@media (max-width: $medium) {
+  .container {
+    &--priority {
+      flex-grow: 1;
+    }
+  }
+}
+

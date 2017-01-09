@@ -5,10 +5,18 @@ class AccessMenu extends Component {
     return (
       <ul className='menu'>
         <li className='menu__item'>
-          <a className='menu__link menu__link'>Sign In</a>
+          <a id='signin-link'
+             className='menu__link'
+             onClick={() => {
+               this.props.showFormFor('signin')
+             }}>Sign In</a>
         </li>
         <li className='menu__item'>
-          <a className='menu__link menu__link--emphasis'>Join</a>
+          <a id='join-link'
+             className='menu__link menu__link--emphasis'
+             onClick={() => {
+               this.props.showFormFor('join')
+             }}>Join</a>
         </li>
       </ul>
     );

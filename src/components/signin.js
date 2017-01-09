@@ -35,19 +35,23 @@ class SignIn extends Component {
     return (
       <AccessForm submitLabel='Sign In'
                   shouldDisable={this.state.shouldDisable}>
-        <InputField fieldValue={this.state.usernameValue}
-                    inputType='text'
-                    inputName='username'
-                    onChange={(username) => {
-                      this.usernameChange(username);
-                    }}/>
+        <fieldset className='form__fieldset'>
+          <InputField fieldValue={this.state.usernameValue}
+                      inputType='text'
+                      inputName='username'
+                      onChange={(username) => {
+                        this.usernameChange(username);
+                      }}/>
+        </fieldset>
 
-        <InputField fieldValue={this.state.passwordValue}
-                    inputType='password'
-                    inputName='password'
-                    onChange={(password) => {
-                      this.passwordChange(password)
-                    }}/>
+        <fieldset className='form__fieldset'>
+          <InputField fieldValue={this.state.passwordValue}
+                      inputType='password'
+                      inputName='password'
+                      onChange={(password) => {
+                        this.passwordChange(password)
+                      }}/>
+        </fieldset>
       </AccessForm>
     );
   }

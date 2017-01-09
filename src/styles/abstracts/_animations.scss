@@ -1,0 +1,39 @@
+@keyframes pushContainer {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pullContainer {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes contentPush {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes contentPull {
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: -100%;
+  }
+}

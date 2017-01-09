@@ -1,0 +1,60 @@
+.form {
+  width: 60%;
+
+  &__fieldset {
+    border: 0;
+    margin-bottom: 1em;
+  }
+
+  &__text-input {
+    border: 0;
+    border-bottom: solid 1px $navigation-color;
+    color: $navigation-color;
+    font-size: 2.5em;
+    height: 2em;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__submit {
+    background-color: $emphasis-color;
+    border: 0;
+    box-shadow: $high-shadow;
+    color: $secondary-color;
+    cursor: pointer;
+    font-size: 2.8em;
+    height: 1.8em;
+    margin-bottom: .2em;
+    margin-top: .5em;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+    }
+
+    &--disabled {
+      cursor: default;
+      opacity: .6;
+    }
+
+    &--fb {
+      background-color: $fb-color;
+    }
+  }
+}
+
+@media (min-width: $large) {
+  .form {
+    width: 50%;
+  }
+}
+
+@media (min-width: $x-large) {
+  .form {
+    width: 40%;
+  }
+}
+

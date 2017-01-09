@@ -24,6 +24,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-circle-cross:before {
+  content: "\e900";
+}
+
 .icon-pin:before {
   content: "\e902";
 }

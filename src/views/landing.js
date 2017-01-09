@@ -1,22 +1,62 @@
 import React, { Component } from 'react';
 
+import Overlay from '../components/overlay';
 import AccessMenu from '../components/access-menu';
+import SignIn from '../components/signin';
+import Join from '../components/join';
 
 class Landing extends Component {
 
+  constructor() {
+    super();
+
+    this.state = {
+      signinForm: <SignIn/>,
+      joinForm: <Join/>,
+      overlayClass: '',
+      formToShow: '',
+      displayOverlay: false
+    };
+  }
+
+  showFormFor(form) {
+    this.setState({
+      overlayClass: 'content-push',
+      formToShow: `${form}Form`,
+      displayOverlay: true
+    });
+  }
+
+  closeOverlay() {
+    if (this.state.displayOverlay) {
+      this.setState({
+        overlayClass: 'content-push--hidden',
+        formToShow: '',
+        displayOverlay: false
+      });
+    }
+  }
+
   render() {
     const containerRow = 'container--flex container--flex--row';
+    const accessForm = this.state[this.state.formToShow];
 
     return (
       <div className='container'>
+        <Overlay showEffect={this.state.overlayClass}
+                 onClose={this.closeOverlay.bind(this)}>
+          {accessForm}
+        </Overlay>
+
         <div className={'container--full-screen' +
                         ' container--flex' +
                         ' container--flex--column' +
+                        ' container--' + this.state.overlayClass +
                         ' container--landing'}>
           <div className={containerRow +
                           ' container--flex--align-right' +
                           ' container--flex--align-middle'}>
-            <AccessMenu/>
+            <AccessMenu showFormFor={this.showFormFor.bind(this)}/>
           </div>
 
           <div className={containerRow +

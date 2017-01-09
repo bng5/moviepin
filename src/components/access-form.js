@@ -12,6 +12,7 @@ class InputField extends Component {
              className='form__text-input'
              name={this.props.inputName}
              value={this.props.fieldValue}
+             placeholder={this.props.inputName}
              onChange={this.fieldChange.bind(this)}/>
     );
   }
@@ -43,14 +44,15 @@ class AccessForm extends Component {
       <form className='form'>
         {this.props.children}
 
-        <p>- or -</p>
-
         <input type='submit'
-               className={'form__submit--' + this.state.disableOrActive}
+               className={'form__submit form__submit--' +
+                          this.state.disableOrActive}
                disabled={this.props.shouldDisable}
                value={this.props.submitLabel}/>
 
-        <a className='fb-sso'></a>
+        <div className='form__submit form__submit--fb'>
+          <a>fb</a>
+        </div>
       </form>
     );
   }
