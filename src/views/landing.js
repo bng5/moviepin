@@ -31,7 +31,6 @@ class Landing extends Component {
     if (this.state.displayOverlay) {
       this.setState({
         overlayClass: 'content-push--hidden',
-        formToShow: '',
         displayOverlay: false
       });
     }

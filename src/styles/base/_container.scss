@@ -13,7 +13,7 @@
   }
 
   &--landing {
-    background-image: url('../images/film-poster2.jpg');
+    background-image: url('../images/film-poster.jpg');
     background-size: cover;
   }
 
@@ -76,12 +76,3 @@
     }
   }
 }
-
-@media (max-width: $medium) {
-  .container {
-    &--priority {
-      flex-grow: 1;
-    }
-  }
-}
-
