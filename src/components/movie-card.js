@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 class MovieCard extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       pinit: 'pin'
@@ -19,13 +19,17 @@ class MovieCard extends Component {
 
   render() {
     return (
-      <div className='container'>
+      <div className='container container--card'>
         <div className='card card--poster'>
-          <img className='card__poster' src='./test.jpg'/>
-          <button className={`card__${this.state.pinit}`}
-                  onClick={this.togglePin.bind(this)}>Add</button>
+          <img className='card__poster' src={this.props.movie.poster}/>
         </div>
-        <p className='headline'></p>
+
+        <a className={'card__pinit' +
+                      ' card__pinit--poster' +
+                      ' card__pinit--' + this.state.pinit}
+                onClick={this.togglePin.bind(this)}>
+          <span className='icon-pin'></span>
+        </a>
       </div>
     );  
   }  

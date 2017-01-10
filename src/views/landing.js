@@ -54,7 +54,7 @@ class Landing extends Component {
           </div>
 
           <div className={containerRow +
-                          ' container--flex--priority' +
+                          ' container--flex--priority2' +
                           ' container--flex--align-center' +
                           ' container--flex--align-bottom'}>
             <div className='logo logo--landing'>

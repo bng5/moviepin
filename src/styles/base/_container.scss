@@ -7,6 +7,15 @@
     width: 100%;
   }
 
+  &--header {
+    background-color: $secondary-color;
+    box-shadow: $light-shadow;
+    height: 13em;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+  }
+
   &--overlay {
     position: fixed;
     z-index: 3;
@@ -17,9 +26,26 @@
     background-size: cover;
   }
 
+  &--logo {
+    min-width: 10em;
+  }
+
+  &--deck {
+    padding: 15em 5em 5em;
+  }
+
+  &--card {
+    margin: 1em 1.5em;
+    padding: .2em 2em .2em .2em;
+  }
+
   &--flex {
     display: flex;
     flex-grow: 1;
+
+    &--wrap {
+      flex-wrap: wrap;
+    }
 
     &--column {
       flex-direction: column;
@@ -29,7 +55,15 @@
       flex-direction: row;
     }
 
-    &--priority {
+    &--priority0 {
+      flex-grow: 0;
+    }
+
+    &--priority1 {
+      flex-grow: 1;
+    }
+
+    &--priority2 {
       flex-grow: 2;
     }
 
