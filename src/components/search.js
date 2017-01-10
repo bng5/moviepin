@@ -1,16 +1,31 @@
 import React, { Component } from 'react';
 
+import InputField from './input-field';
+
 class Search extends Component {
+  constructor() {
+    super();
+    
+    this.state = {
+      searchValue: ''
+    };
+  }
+
+  searchValueChange(searchTerm) {
+    this.setState({
+      searchValue: searchTerm
+    });
+  }
+
   render() {
     return (
       <form className='form'>
-        <fieldset>
-          <input type='text'
-                 className='form__text-input'/>
-          <input type='submit'
-                 className='form__submit--active'
-                 value='Search'/>
-        </fieldset>
+          <InputField fieldValue={this.state.searchValue}
+                      inputType='text'
+                      inputName='search'
+                      onChange={(searchTerm) => {
+                        this.searchValueChange(searchTerm);
+                      }}/>
       </form>
     );
   }

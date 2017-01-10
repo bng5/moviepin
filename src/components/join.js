@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import { AccessForm, InputField } from './access-form';
+import AccessForm from './access-form';
+import InputField from './input-field';
 
 class Join extends Component {
 

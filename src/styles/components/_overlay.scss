@@ -24,5 +24,13 @@
     &--hidden {
       animation: contentPull 1s forwards;
     }
+
+    &--right {
+      animation: contentPushRight 1s forwards;
+    }
+
+    &--right--hidden {
+      animation: contentPullRight 1s forwards;
+    }
   }
 }

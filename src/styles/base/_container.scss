@@ -60,6 +60,14 @@
     &--hidden {
       animation: pullContainer 1s forwards;
     }
+
+    &--right {
+      animation: pushContainerRight 1s forwards;
+    }
+
+    &--right--hidden {
+      animation: pullContainerRight 1s forwards;
+    }
   }
 
   &__headline {

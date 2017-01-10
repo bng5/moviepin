@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
 
+import { AbstractMenu, MenuLink } from './abstract-menu';
+
 class AccessMenu extends Component {
   render() {
     return (
-      <ul className='menu'>
-        <li className='menu__item'>
-          <a id='signin-link'
-             className='menu__link'
-             onClick={() => {
-               this.props.showFormFor('signin')
-             }}>Sign In</a>
-        </li>
-        <li className='menu__item'>
-          <a id='join-link'
-             className='menu__link menu__link--emphasis'
-             onClick={() => {
-               this.props.showFormFor('join')
-             }}>Join</a>
-        </li>
-      </ul>
+      <AbstractMenu>
+        <MenuLink linkId='sigin-link'
+                  label='Sign In'
+                  onClick={() => {
+                    this.props.showFormFor('signin');
+                  }}/>
+        <MenuLink linkId='join-link'
+                  menuLinkClassName='menu__link--emphasis'
+                  label='Join'
+                  onClick={() => {
+                    this.props.showFormFor('join');
+                  }}/>
+      </AbstractMenu>
     );
   }
 }

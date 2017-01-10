@@ -19,4 +19,15 @@
       color: $emphasis-color;
     }
   }
+
+  &--for-user {
+    position: fixed;
+    right: 0;
+    top: 2em;
+    z-index: 2;
+
+    .menu__item {
+      margin-right: 3em;
+    }
+  }
 }

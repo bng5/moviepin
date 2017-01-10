@@ -8,7 +8,6 @@ describe ('<Search>', () => {
     const wrapper = shallow(<Search/>);
 
     expect(wrapper.find('.form').length).toBe(1);
-    expect(wrapper.find('.form__text-input').length).toBe(1);
-    expect(wrapper.find('.form__submit--active').length).toBe(1);
+    expect(wrapper.find('InputField').length).toBe(1);
   })
 });

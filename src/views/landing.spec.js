@@ -20,7 +20,7 @@ describe ('show access forms', () => {
 
     expect(wrapper.find('Overlay').length).toBe(1);
 
-    accessMenu.find('.menu #signin-link').simulate('click');
+    accessMenu.find('MenuLink').first().simulate('click');
 
     expect(wrapper.find('SignIn').length).toBe(1);
   });
@@ -31,7 +31,7 @@ describe ('show access forms', () => {
 
     expect(wrapper.find('Join').length).toBe(0);
 
-    accessMenu.find('.menu #join-link').simulate('click');
+    accessMenu.find('MenuLink').last().simulate('click');
 
     expect(wrapper.find('Join').length).toBe(1);
   });

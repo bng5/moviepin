@@ -14,26 +14,21 @@ class Landing extends Component {
       signinForm: <SignIn/>,
       joinForm: <Join/>,
       overlayClass: '',
-      formToShow: '',
-      displayOverlay: false
+      formToShow: ''
     };
   }
 
   showFormFor(form) {
     this.setState({
       overlayClass: 'content-push',
-      formToShow: `${form}Form`,
-      displayOverlay: true
+      formToShow: `${form}Form`
     });
   }
 
   closeOverlay() {
-    if (this.state.displayOverlay) {
-      this.setState({
-        overlayClass: 'content-push--hidden',
-        displayOverlay: false
-      });
-    }
+    this.setState({
+      overlayClass: 'content-push--hidden'
+    });
   }
 
   render() {

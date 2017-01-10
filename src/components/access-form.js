@@ -1,23 +1,5 @@
 import React, { Component } from 'react';
 
-class InputField extends Component {
-
-  fieldChange(event) {
-    this.props.onChange(event.target.value)
-  }
-
-  render() {
-    return (
-      <input type={this.props.inputType}
-             className='form__text-input'
-             name={this.props.inputName}
-             value={this.props.fieldValue}
-             placeholder={this.props.inputName}
-             onChange={this.fieldChange.bind(this)}/>
-    );
-  }
-}
-
 class AccessForm extends Component {
   constructor(props) {
     super(props);
@@ -58,4 +40,4 @@ class AccessForm extends Component {
   }
 }
 
-export { AccessForm, InputField };
+export default AccessForm;
