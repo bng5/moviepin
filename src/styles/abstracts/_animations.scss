@@ -77,3 +77,43 @@
     right: -100%;
   }
 }
+
+@keyframes upToHeader {
+  0% {
+    height: 100vh;
+  }
+
+  100% {
+    height: 9.5em;
+  }
+}
+
+@keyframes downFromHeader {
+  0% {
+    height: 9.5;
+  }
+
+  100% {
+    height: 100vh;
+  }
+}
+
+@keyframes pushContainerTop {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes pullContainerBottom {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
+}

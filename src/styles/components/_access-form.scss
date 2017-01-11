@@ -1,6 +1,10 @@
 .form {
   width: 60%;
 
+  &--search {
+    margin-top: 1.5em;
+  }
+
   &__fieldset {
     border: 0;
     margin-bottom: 1em;

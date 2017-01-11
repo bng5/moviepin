@@ -15,19 +15,22 @@ class Dashboard extends Component {
 
     this.state = {
       overlayClass: '',
-      containerScreenClass: 'full-screen'
+      overlayHidden: '--hidden',
+      containerScreenClass: 'full-screen',
+      searchClass: 'container--flex--align-middle'
     };
   }
 
   showFormFor() {
     this.setState({
-      overlayClass: 'content-push--right'
+      overlayClass: '--content-push--right',
+      overlayHidden: ''
     });
   }
 
   closeOverlay() {
     this.setState({
-      overlayClass: 'content-push--right--hidden'
+      overlayHidden: '--hidden'
     });
   }
 
@@ -65,6 +68,12 @@ class Dashboard extends Component {
       this.setState({
         containerScreenClass: 'header'
       });
+
+      _.delay(() => {
+        this.setState({
+          searchClass: 'container--flex--align-top'
+        });
+      }, 2000);
     }
   }
 
@@ -82,20 +91,22 @@ class Dashboard extends Component {
     return (
       <div className='container'>
         <Overlay showEffect={this.state.overlayClass}
-                 onClose={this.closeOverlay.bind(this)}>
+                 hidden={this.state.overlayHidden}
+                 onClose={ this.closeOverlay.bind(this) }>
         </Overlay>
-
 
         <div className={'container--flex' +
                         ' container--flex--column' +
-                        ' container--' + this.state.overlayClass +
+                        ' container' +
+                        this.state.overlayClass +
+                        this.state.overlayHidden +
                         ' container--dashboard'}>
           <div className={containerRow +
                           ' container--' +
                           this.state.containerScreenClass}>
             <div className='container--flex container--logo'/>
-            <Search className={'container--flex' +
-                               ' container--flex--align-middle'}/>
+            <Search className={'container--flex ' +
+                               this.state.searchClass}/>
 
             <Menu className='container--flex'
                   showFormFor={this.showFormFor.bind(this)}/>

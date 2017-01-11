@@ -8,17 +8,16 @@
   }
 
   &--header {
-    background-color: $secondary-color;
-    box-shadow: $light-shadow;
-    height: 13em;
+    background-color: red;
     position: fixed;
     width: 100%;
-    z-index: 2;
+    z-index: 9;
+    animation: upToHeader 2s cubic-bezier(.09, .54, .53, .65) forwards;
   }
 
   &--overlay {
     position: fixed;
-    z-index: 3;
+    z-index: 10;
   }
 
   &--landing {
@@ -31,7 +30,7 @@
   }
 
   &--deck {
-    padding: 15em 5em 5em;
+    padding: 12em 5em 5em;
   }
 
   &--card {

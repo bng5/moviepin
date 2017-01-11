@@ -10,6 +10,7 @@ class Menu extends Component {
         <MenuLink linkId='user-menu'
                   label={<span className='icon-menu'></span>}
                   onClick={() => {
+                    this.props.showFormFor('user-menu');
                   }}/>
       </AbstractMenu>
     );

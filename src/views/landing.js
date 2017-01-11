@@ -14,20 +14,22 @@ class Landing extends Component {
       signinForm: <SignIn/>,
       joinForm: <Join/>,
       overlayClass: '',
+      overlayHidden: '--hidden',
       formToShow: ''
     };
   }
 
   showFormFor(form) {
     this.setState({
-      overlayClass: 'content-push',
+      overlayClass: '--content-push',
+      overlayHidden: '',
       formToShow: `${form}Form`
     });
   }
 
   closeOverlay() {
     this.setState({
-      overlayClass: 'content-push--hidden'
+      overlayHidden: '--hidden'
     });
   }
 
@@ -38,14 +40,17 @@ class Landing extends Component {
     return (
       <div className='container'>
         <Overlay showEffect={this.state.overlayClass}
-                 onClose={this.closeOverlay.bind(this)}>
+                 hidden={this.state.overlayHidden}
+                 onClose={ this.closeOverlay.bind(this) }>
           {accessForm}
         </Overlay>
 
         <div className={'container--full-screen' +
                         ' container--flex' +
                         ' container--flex--column' +
-                        ' container--' + this.state.overlayClass +
+                        ' container' +
+                        this.state.overlayClass +
+                        this.state.overlayHidden +
                         ' container--landing'}>
           <div className={containerRow +
                           ' container--flex--align-right' +

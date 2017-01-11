@@ -10,15 +10,4 @@ describe ('renders <Overlay>', () => {
 
     expect(wrapper.find('.overlay--hidden').length).toBe(1);
   });
-
-  it ('should hide when visible', () => {
-    const wrapper = shallow(<Overlay showEffect='content-push'/>);
-
-    expect(wrapper.find('.overlay--content-push').length).toBe(1);
-
-    wrapper.find('.overlay__close').simulate('click');
-
-    expect(wrapper.find('.overlay--content-push--hidden').length).toBe(1);
-    expect(wrapper.find('.overlay--content-push').length).toBe(0);
-  });
 });

@@ -48,5 +48,5 @@ const render = (component) => {
   );
 };
 
-render(<Dashboard movies={movies}/>)
+render(<Dashboard movies={[]}/>)
 // render(<Landing/>)
