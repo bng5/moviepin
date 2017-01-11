@@ -49,7 +49,7 @@ class Dashboard extends Component {
     if (!_.isEmpty(this.props.movies)) {
       const containerRow = 'container--flex container--flex--row';
       let movieCards = [];
-      
+
       _.each(this.props.movies, (movie) => {
         movieCards.push(this.flexColumnWithCard(movie));
       });

@@ -8,11 +8,11 @@
   }
 
   &--header {
-    background-color: red;
+    background-color: $secondary-color;
     position: fixed;
     width: 100%;
     z-index: 9;
-    animation: upToHeader 2s cubic-bezier(.09, .54, .53, .65) forwards;
+    animation: upToHeader 1s cubic-bezier(.09, .54, .53, .65) forwards;
   }
 
   &--overlay {
@@ -30,7 +30,10 @@
   }
 
   &--deck {
-    padding: 12em 5em 5em;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 12em 5em 5em 0;
+    width: 100%;
   }
 
   &--card {
