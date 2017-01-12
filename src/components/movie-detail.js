@@ -21,21 +21,19 @@ class MovieDetail extends Component {
     const movie = this.props.movie;
 
     return (
-      <div className='container'>
-        <div className='card card--detail'>
-          <img className='card__poster' src={movie.poster}/>
+      <div className={'card card__detail' +
+                      ' card__detail' + this.props.showDetail}>
 
-          <p className='movie__detail'>
-            <span className='movie__detail--year'>
-              {movie.year}
-            </span>
-          </p>
+        <p className='movie__detail'>
+          <span className='movie__detail--year'>
+            {movie.year}
+          </span>
+        </p>
 
-          <p>{movie.overview}</p>
+        <p>{movie.overview}</p>
 
-          <button className={'card__' + this.state.pinit}
-                  onClick={this.togglePin.bind(this)}>Add</button>
-        </div>
+        <button className={'card__' + this.state.pinit}
+                onClick={this.togglePin.bind(this)}>Add</button>
       </div>
     );  
   }  

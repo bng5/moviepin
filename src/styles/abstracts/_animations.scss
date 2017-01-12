@@ -117,3 +117,47 @@
     transform: translateY(-100%);
   }
 }
+
+@keyframes openDetail {
+  0% {
+    height: 0;
+  }
+
+  100% {
+    height: 8em;
+  }
+}
+
+@keyframes closeDetail {
+  0% {
+    height: 8em;
+  }
+
+  100% {
+    height: 0;
+  }
+}
+
+@keyframes openDetailPadding {
+  0% {
+    height: 0;
+    padding: 0 4em;
+  }
+
+  100% {
+    height: 8em;
+    padding: 1em 4em;
+  }
+}
+
+@keyframes closeDetailPadding {
+  0% {
+    height: 8em;
+    padding: 1em 4em;
+  }
+
+  100% {
+    height: 0;
+    padding: 0 4em;
+  }
+}

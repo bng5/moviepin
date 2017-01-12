@@ -5,9 +5,7 @@ import _ from 'lodash';
 import Overlay from '../components/overlay';
 import Menu from '../components/menu';
 import Search from '../components/search';
-
 import MovieDeck from '../components/movie-deck';
-import MovieDetail from '../components/movie-detail';
 
 class Dashboard extends Component {
 
@@ -15,8 +13,7 @@ class Dashboard extends Component {
     super(props);
 
     this.overlayClasses = {
-      'user-menu': '--content-push--right',
-      'movie-detail': '--content-scale'
+      'user-menu': '--content-push--right'
     }
 
     this.state = {
@@ -30,17 +27,14 @@ class Dashboard extends Component {
 
   showView(viewToShow) {
     this.setState({
+      // overlayView: <MovieDetail movie={movie}/>
       overlayClass: this.overlayClasses[viewToShow],
       overlayHidden: ''
     });
   }
 
-  showMovie(movie) {
-    this.setState({
-      overlayView: <MovieDetail movie={movie}/>
-    });
-
-    this.showView('movie-detail');
+  pinMovie(movie) {
+    console.log('pin movie')
   }
 
   closeOverlay() {
@@ -102,7 +96,7 @@ class Dashboard extends Component {
           </div>
 
           <MovieDeck movies={this.props.movies}
-                     onMovieClick={this.showMovie.bind(this)}/>
+                     onPinMovie={this.pinMovie.bind(this)}/>
         </div>
       </div>
     );

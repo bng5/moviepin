@@ -15,15 +15,19 @@ class MovieCard extends Component {
     } else {
       this.setState({ pinit: 'pin' });
     }
+    
+    this.props.onPin(this.props.movie);
+  }
+
+  toggleMovieDetail() {
+    this.props.showDetail(this.props.movie);
   }
 
   render() {
     return (
-      <div className='container container--card'>
+      <div className='container container--card '>
         <div className='card card--poster'
-             onClick={() => {
-               this.props.onClick(this.props.movie);
-             }}>
+             onClick={this.toggleMovieDetail.bind(this)}>
           <img className='card__poster' src={this.props.movie.poster}/>
         </div>
 

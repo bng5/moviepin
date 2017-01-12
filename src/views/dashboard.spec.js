@@ -30,16 +30,13 @@ describe ('renders <Dashboard>', () => {
     });
 
     it ('should show card detail on demand', () => {
-      const movieCard = wrapper.find('MovieDeck')
-                          .dive()
-                          .find('MovieCard')
-                          .dive();
+      const movieDeck = wrapper.find('MovieDeck').dive();
+      const movieCard = movieDeck.find('MovieCard').first().dive();
 
       movieCard.find('.card.card--poster').simulate('click');
 
-      expect(wrapper.find('Overlay')
-                    .dive()
-                    .find('MovieDetail').length).toBe(1);
+      expect(movieDeck.find('MovieDetail')
+                      .length).toBe(1);
     });
   });
 });

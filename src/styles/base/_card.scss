@@ -6,6 +6,42 @@
       }
     }
   }
+
+  &--card-detail {
+    transform: translateX(-.9em);
+    width: 100%;
+
+    &--show {
+      animation: openDetail 2s forwards;
+    }
+
+    &--hidden {
+      animation: closeDetail 2s forwards;
+    }
+  }
+
+  &--detail-arrow {
+    &::after {
+      border-bottom: 20px solid $emphasis-color;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      content: '';
+      height: 0;
+      opacity: 0;
+      position: absolute;
+      transform: translate(6.8em, 23em);
+      transition: all .5s ease-in;
+      width: 0;
+    }
+  }
+
+  &--card-with-detail {
+    &::after {
+      opacity: 1;
+      transform: translate(6.8em, 21.5em);
+      transition: all .5s ease-in;
+    }
+  }
 }
 
 .card {
@@ -49,6 +85,22 @@
 
     &--unpin {
       background-color: $alternative-emphasis-color;
+    }
+  }
+
+  &__detail {
+    background-color: $secondary-color;
+    box-shadow: $inset-shadow;
+    left: -3px;
+    position: fixed;
+    width: 102%;
+
+    &--show {
+      animation: openDetailPadding 2s forwards;
+    }
+
+    &--hidden {
+      animation: closeDetailPadding 2s forwards;
     }
   }
 }
