@@ -20,7 +20,10 @@ class MovieCard extends Component {
   render() {
     return (
       <div className='container container--card'>
-        <div className='card card--poster'>
+        <div className='card card--poster'
+             onClick={() => {
+               this.props.onClick(this.props.movie);
+             }}>
           <img className='card__poster' src={this.props.movie.poster}/>
         </div>
 

@@ -6,61 +6,47 @@ import Overlay from '../components/overlay';
 import Menu from '../components/menu';
 import Search from '../components/search';
 
-import MovieCard from '../components/movie-card';
+import MovieDeck from '../components/movie-deck';
+import MovieDetail from '../components/movie-detail';
 
 class Dashboard extends Component {
 
   constructor(props) {
     super(props);
 
+    this.overlayClasses = {
+      'user-menu': '--content-push--right',
+      'movie-detail': '--content-scale'
+    }
+
     this.state = {
       overlayClass: '',
       overlayHidden: '--hidden',
       containerScreenClass: 'full-screen',
-      searchClass: 'container--flex--align-middle'
+      searchClass: 'container--flex--align-middle',
+      overlayView: ''
     };
   }
 
-  showFormFor() {
+  showView(viewToShow) {
     this.setState({
-      overlayClass: '--content-push--right',
+      overlayClass: this.overlayClasses[viewToShow],
       overlayHidden: ''
     });
+  }
+
+  showMovie(movie) {
+    this.setState({
+      overlayView: <MovieDetail movie={movie}/>
+    });
+
+    this.showView('movie-detail');
   }
 
   closeOverlay() {
     this.setState({
       overlayHidden: '--hidden'
     });
-  }
-
-  flexColumnWithCard(movie) {
-    return(
-      <div key={'container-' + movie.id}
-           className={'container--flex' +
-                      ' container--flex--priority0' +
-                      ' container--flex--row'}>
-        <MovieCard key={movie.id} movie={movie}/>
-      </div>
-    );
-  }
-
-  moviesSection() {
-    if (!_.isEmpty(this.props.movies)) {
-      const containerRow = 'container--flex container--flex--row';
-      let movieCards = [];
-
-      _.each(this.props.movies, (movie) => {
-        movieCards.push(this.flexColumnWithCard(movie));
-      });
-
-      return (
-        <div className={containerRow +
-                        ' container--deck'}>
-          {movieCards}
-        </div>
-      );
-    }
   }
 
   configureHeaderStyle(properties = this.props) {
@@ -93,6 +79,7 @@ class Dashboard extends Component {
         <Overlay showEffect={this.state.overlayClass}
                  hidden={this.state.overlayHidden}
                  onClose={ this.closeOverlay.bind(this) }>
+          {this.state.overlayView}
         </Overlay>
 
         <div className={'container--flex' +
@@ -104,15 +91,18 @@ class Dashboard extends Component {
           <div className={containerRow +
                           ' container--' +
                           this.state.containerScreenClass}>
+
             <div className='container--flex container--logo'/>
+
             <Search className={'container--flex ' +
                                this.state.searchClass}/>
 
             <Menu className='container--flex'
-                  showFormFor={this.showFormFor.bind(this)}/>
+                  showFormFor={this.showView.bind(this)}/>
           </div>
 
-          {this.moviesSection()}
+          <MovieDeck movies={this.props.movies}
+                     onMovieClick={this.showMovie.bind(this)}/>
         </div>
       </div>
     );

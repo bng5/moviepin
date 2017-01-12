@@ -1,35 +1,8 @@
 import React, { Component } from 'react';
 
-class MovieDetailNav extends Component {
-  render() {
-    return (
-      <nav className='card__nav'>
-        <ul>
-          <li className='nav__back'>
-            <a href='/back'>Back</a>
-          </li>
-        </ul>
-        <p className='nav__headline'>Movie Detail</p>
-      </nav>
-    );  
-  }  
-}
-
-class MovieDetailStaff extends Component {
-  render() {
-    return (
-      <div className='card__staff'>
-        <img src='./directed.jpg' className='staff__picture'/>
-        <p className='staff__name'>Directed By</p>
-        <p className='staff__role'>Director</p>
-      </div>
-    );
-  }
-}
-
 class MovieDetail extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       pinit: 'pin'
@@ -44,37 +17,23 @@ class MovieDetail extends Component {
     }
   }
 
-  cast() {
-    let cast = [];
-
-    for (let i = 0; i <= 2; i++) {
-      cast.push(<MovieDetailStaff key={`actor-${i}`} className='cast'/>);
-    }
-
-    return cast;
-  }
-
   render() {
+    const movie = this.props.movie;
+
     return (
       <div className='container'>
         <div className='card card--detail'>
-          <MovieDetailNav/>
-
-          <img className='card__poster' src='./test.jpg'/>
+          <img className='card__poster' src={movie.poster}/>
 
           <p className='movie__detail'>
-            <span className='movie__detail--year'>2015</span>
-            <span className='movie__detail--genre'>Drama</span>
+            <span className='movie__detail--year'>
+              {movie.year}
+            </span>
           </p>
 
-          <MovieDetailStaff className='directed-by'/>
-          <MovieDetailStaff className='written-by'/>
-          <MovieDetailStaff className='produced-by'/>
+          <p>{movie.overview}</p>
 
-          <p>Cast</p>
-          {this.cast()}
-
-          <button className={`card__${this.state.pinit}`}
+          <button className={'card__' + this.state.pinit}
                   onClick={this.togglePin.bind(this)}>Add</button>
         </div>
       </div>
