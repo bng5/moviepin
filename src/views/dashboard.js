@@ -12,47 +12,46 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
 
-    this.overlayClasses = {
-      'user-menu': '--content-push--right'
+    this.inOverlayEffectes = {
+      'user-menu': '-content-push -right'
     }
 
     this.state = {
-      overlayClass: '',
-      overlayHidden: '--hidden',
-      containerScreenClass: 'full-screen',
-      searchClass: 'container--flex--align-middle',
+      inOverlayEffect: '',
+      outOverlayEffect: '',
+      headerClass: '-full-screen',
+      searchClass: '-middle',
       overlayView: ''
     };
   }
 
   showView(viewToShow) {
     this.setState({
-      // overlayView: <MovieDetail movie={movie}/>
-      overlayClass: this.overlayClasses[viewToShow],
-      overlayHidden: ''
+      inOverlayEffect: this.inOverlayEffectes[viewToShow],
+      outOverlayEffect: ''
     });
   }
 
   pinMovie(movie) {
-    console.log('pin movie')
+    console.log('pin movie' + movie.id)
   }
 
   closeOverlay() {
     this.setState({
-      overlayHidden: '--hidden'
+      outOverlayEffect: '-hidden'
     });
   }
 
   configureHeaderStyle(properties = this.props) {
     if (!_.isEmpty(properties.movies)) {
       this.setState({
-        containerScreenClass: 'header'
+        headerClass: '-as-header'
       });
 
       _.delay(() => {
-        this.setState({
-          searchClass: 'container--flex--align-top'
-        });
+        // this.setState({
+        //   searchClass: '-center-top'
+        // });
       }, 2000);
     }
   }
@@ -66,32 +65,28 @@ class Dashboard extends Component {
   }
 
   render() {
-    const containerRow = 'container--flex container--flex--row';
+    const inOverlayEffect = this.state.inOverlayEffect;
+    const outOverlayEffect = this.state.outOverlayEffect;
+    const headerClass = this.state.headerClass;
 
     return (
       <div className='container'>
-        <Overlay showEffect={this.state.overlayClass}
-                 hidden={this.state.overlayHidden}
+        <Overlay inEffect={this.state.inOverlayEffect}
+                 outEffect={this.state.outOverlayEffect}
                  onClose={ this.closeOverlay.bind(this) }>
           {this.state.overlayView}
         </Overlay>
 
-        <div className={'container--flex' +
-                        ' container--flex--column' +
-                        ' container' +
-                        this.state.overlayClass +
-                        this.state.overlayHidden +
-                        ' container--dashboard'}>
-          <div className={containerRow +
-                          ' container--' +
-                          this.state.containerScreenClass}>
+        <div className={'container__dashboard -flex-column ' +
+                        inOverlayEffect + ' ' + outOverlayEffect}>
 
-            <div className='container--flex container--logo'/>
+          <div className={'dashboard__header -flex-row ' + headerClass}>
+            <div className='header__logo -flex-row'/>
 
-            <Search className={'container--flex ' +
+            <Search className={ 'header_search -flex-row ' +
                                this.state.searchClass}/>
 
-            <Menu className='container--flex'
+            <Menu className='header__menu -flex-row'
                   showFormFor={this.showView.bind(this)}/>
           </div>
 

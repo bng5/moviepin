@@ -1,6 +1,10 @@
-.menu {
-  list-style: none;
+.header {
+  &__menu {
+    list-style: none;
+  }
+}
 
+.menu {
   &__item {
     margin-right: 5em;
     text-align: right;
@@ -8,25 +12,14 @@
     &:first-child {
       margin-bottom: 2em;
     }
+
+    &.-for-dashboard {
+      margin-top: 2.5em;
+    }
   }
 
   &__link {
-    color: $navigation-color;
     cursor: pointer;
     font-size: 3em;
-
-    &--emphasis {
-      color: $emphasis-color;
-    }
-  }
-
-  &--for-user {
-    justify-content: flex-end;
-
-    .menu {
-      &__item {
-        margin-top: 2.5em;
-      }
-    }
   }
 }

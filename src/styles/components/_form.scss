@@ -1,8 +1,8 @@
 .form {
   width: 60%;
 
-  &--search {
-    margin-top: 1.5em;
+  &.-search {
+    margin-top: -1.5em;
   }
 
   &__fieldset {
@@ -40,12 +40,12 @@
       outline: none;
     }
 
-    &--disabled {
+    &.-disabled {
       cursor: default;
       opacity: .6;
     }
 
-    &--fb {
+    &.-fb {
       background-color: $fb-color;
     }
   }

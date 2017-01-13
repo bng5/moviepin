@@ -5,35 +5,42 @@ class MovieDetail extends Component {
     super(props);
 
     this.state = {
-      pinit: 'pin'
+      pinit: '-pin'
     };
   }
 
   togglePin() {
-    if (this.state.pinit == 'pin') {
-      this.setState({ pinit: 'unpin' });
+    if (this.state.pinit == '-pin') {
+      this.setState({ pinit: '-unpin' });
     } else {
-      this.setState({ pinit: 'pin' });
+      this.setState({ pinit: '-pin' });
     }
   }
 
   render() {
     const movie = this.props.movie;
 
-    return (
-      <div className={'card card__detail' +
-                      ' card__detail' + this.props.showDetail}>
+    if (!movie) { return null; }
 
-        <p className='movie__detail'>
-          <span className='movie__detail--year'>
+    return (
+      <div key='movie-detail'
+           className={'card__detail ' +
+                      this.props.showDetail}>
+
+        <p className='detail'>
+          <span className='detail__year'>
             {movie.year}
           </span>
         </p>
 
-        <p>{movie.overview}</p>
+        <p className='detail'>
+          {movie.overview}
+        </p>
 
-        <button className={'card__' + this.state.pinit}
-                onClick={this.togglePin.bind(this)}>Add</button>
+        <a className={'detail__pinit -next-to-poster ' + this.state.pinit}
+          onClick={this.togglePin.bind(this)}>
+          <span className='icon-pin'></span>
+        </a>
       </div>
     );  
   }  

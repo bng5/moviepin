@@ -1,8 +1,8 @@
 .overlay {
-
-  &--hidden {
-    display: none;
-  }
+  background-color: $secondary-color;
+  display: none;
+  position: fixed;
+  z-index: $overlay;
 
   &__close {
     color: $emphasis-color;
@@ -18,19 +18,23 @@
     }
   }
 
-  &--content-push {
+  &.-content-push {
     animation: contentPush 1s forwards;
+    display: flex;
 
-    &--hidden {
+    &.-hidden {
       animation: contentPull 1s forwards;
+      display: flex;
     }
 
-    &--right {
+    &.-right {
       animation: contentPushRight 1s forwards;
-    }
 
-    &--right--hidden {
-      animation: contentPullRight 1s forwards;
+      // scss-lint:disable NestingDepth
+      &.-hidden {
+        animation: contentPullRight 1s forwards;
+      }
+      // scss-lint:enable NestingDepth
     }
   }
 }

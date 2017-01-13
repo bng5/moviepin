@@ -5,35 +5,31 @@ class MovieCard extends Component {
     super(props);
 
     this.state = {
-      pinit: 'pin'
+      pinit: '-pin'
     };
   }
 
   togglePin() {
-    if (this.state.pinit == 'pin') {
-      this.setState({ pinit: 'unpin' });
+    if (this.state.pinit == '-pin') {
+      this.setState({ pinit: '-unpin' });
     } else {
-      this.setState({ pinit: 'pin' });
+      this.setState({ pinit: '-pin' });
     }
     
     this.props.onPin(this.props.movie);
   }
 
-  toggleMovieDetail() {
-    this.props.showDetail(this.props.movie);
-  }
-
   render() {
     return (
-      <div className='container container--card '>
-        <div className='card card--poster'
-             onClick={this.toggleMovieDetail.bind(this)}>
-          <img className='card__poster' src={this.props.movie.poster}/>
+      <div className='card'>
+        <div className='card__poster'
+             onClick={() => {
+               this.props.showDetail(this.props.movie);
+             }}>
+          <img className='card__poster -picture' src={this.props.movie.poster}/>
         </div>
 
-        <a className={'card__pinit' +
-                      ' card__pinit--poster' +
-                      ' card__pinit--' + this.state.pinit}
+        <a className={'card__pinit -next-to-poster ' + this.state.pinit}
                 onClick={this.togglePin.bind(this)}>
           <span className='icon-pin'></span>
         </a>

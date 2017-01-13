@@ -6,9 +6,10 @@ class Menu extends Component {
 
   render() {
     return (
-      <AbstractMenu className={'menu--for-user ' + this.props.className}>
+      <AbstractMenu className={this.props.className + ' -right-top'}>
         <MenuLink linkId='user-menu'
                   label={<span className='icon-menu'></span>}
+                  menuItemClassName='-for-dashboard'
                   onClick={() => {
                     this.props.showFormFor('user-menu');
                   }}/>

@@ -1,60 +1,52 @@
-.container {
-  &--card {
-    &:hover {
-      .card__pinit {
-        display: inline;
-      }
-    }
+.deck-detail {
+  transform: translateX(-.9em);
+  width: 100%;
+
+  &.-show {
+    animation: openDetail 2s forwards;
   }
 
-  &--card-detail {
-    transform: translateX(-.9em);
-    width: 100%;
-
-    &--show {
-      animation: openDetail 2s forwards;
-    }
-
-    &--hidden {
-      animation: closeDetail 2s forwards;
-    }
+  &.-hidden {
+    animation: closeDetail 2s forwards;
   }
+}
 
-  &--detail-arrow {
+.deck-card {
+  background-color: $secondary-color;
+  height: 18.5em;
+  margin: 3em 2.4em .8em;
+  overflow: hidden;
+  padding: .2em 2em .2em .2em;
+  z-index: $deck-card;
+
+  &.-up-arrow {
+    @extend %up-arrow;
+
     &::after {
-      border-bottom: 20px solid $emphasis-color;
-      border-left: 20px solid transparent;
-      border-right: 20px solid transparent;
-      content: '';
-      height: 0;
-      opacity: 0;
-      position: absolute;
-      transform: translate(6.8em, 23em);
-      transition: all .5s ease-in;
-      width: 0;
+      transform: translate(4.5em, 20.3em);
     }
   }
 
-  &--card-with-detail {
+  &.-arrow-for-this {
+    @extend %arrow-for-this;
+
     &::after {
-      opacity: 1;
-      transform: translate(6.8em, 21.5em);
-      transition: all .5s ease-in;
+      transform: translate(4.5em, 18.3em);
     }
   }
 }
 
 .card {
-  box-shadow: $poster-shadow;
-  overflow: hidden;
 
-  &--poster {
+  &__poster {
+    box-shadow: $poster-shadow;
     cursor: pointer;
     height: 17em;
+    overflow: hidden;
     width: 11.5em;
   }
 
-  &__poster {
+  &.picture {
     height: auto;
     width: 100%;
   }
@@ -73,34 +65,61 @@
       box-shadow: $shadow;
     }
 
-    &--poster {
+    &.-next-to-poster {
       bottom: .8em;
       position: relative;
-      z-index: 4;
+      z-index: $pin-for-poster;
     }
 
-    &--pin {
+    &.-pin {
       background-color: $emphasis-color;
     }
 
-    &--unpin {
+    &.-unpin {
       background-color: $alternative-emphasis-color;
+      display: inline;
+    }
+  }
+
+  &:hover {
+    .-pin {
+      display: inline;
     }
   }
 
   &__detail {
-    background-color: $secondary-color;
-    box-shadow: $inset-shadow;
+    background-color: $alt-background-color;
+    color: $secondary-color;
+    font-family: 'Quicksand', sans-serif;
+    height: 12em;
     left: -3px;
     position: fixed;
     width: 102%;
+    z-index: 1;
 
-    &--show {
+    &.-show {
       animation: openDetailPadding 2s forwards;
     }
 
-    &--hidden {
+    &.-hidden {
       animation: closeDetailPadding 2s forwards;
+    }
+
+    &.-as-cover {
+      background-color: $secondary-color;
+      box-shadow: none;
+      height: 14em;
+      z-index: 2;
+
+      // scss-lint:disable NestingDepth
+      &.-show {
+        animation: openDetailCover 2s forwards;
+      }
+
+      &.-hidden {
+        animation: closeDetailCover 2s forwards;
+      }
+      // scss-lint:enable NestingDepth
     }
   }
 }

@@ -1,9 +1,19 @@
-.logo {
-  color: $alternative-color;
-  text-align: center;
+.branding {
+  &__logo {
+    color: $alternative-color;
+    text-align: center;
+  }
+}
 
+.header {
+  &__logo {
+    min-width: 10em;
+  }
+}
+
+.logo {
   &__icon {
-    font-size: 9em;
+    font-size: 6em;
     left: .4em;
     position: relative;
     top: .25em;
@@ -11,12 +21,8 @@
 
   &__name {
     font-family: 'Righteous', serif;
-    font-size: 12em;
+    font-size: 9em;
     letter-spacing: .015em;
     margin: 0;
-  }
-
-  &--emphasis {
-    color: $emphasis-color;
   }
 }

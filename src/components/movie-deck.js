@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 
 import _ from 'lodash';
 
-import MovieCard from './movie-card';
-import MovieDetail from './movie-detail'
+import Card from './card';
+import DummyCard from './dummy-card';
+import CardDetail from './card-detail';
 
 const CARD_SIZE = 295;
 
@@ -13,142 +14,96 @@ class MovieDeck extends Component {
     super(props);
 
     this.state = {
-      cardsPerRow: 0,
-      dummyWidth: 0,
-      movieDetail: null,
-      addDetailAfter: 0,
-      movieDetailIndex: 0,
-      showDetailClass: '',
-      showDetail: '--show'
+      cardsPerRow: Math.floor(window.innerWidth / CARD_SIZE),
+      movieIndex: 0,
+      addDetailAfter: 0
     };
-  }
-  
-  componentWillMount() {
-    // parameter must be this.props.movies.length
-    // it also must be called when window resizes (redux)
-    this.setDummyContainer(15);
   }
 
   showDetail(movie) {
     const movieIndex = _.findIndex(this.props.movies, { id: movie.id } ) + 1;
     const movieInRow = Math.ceil(movieIndex/this.state.cardsPerRow);
+    
+    if (movieIndex == this.state.movieIndex) {
+      this.setState({
+        movieIndex: 0,
+        addDetailAfter: 0
+      });
 
-    let movieComponent = null;
-
-    if (movieInRow > 0) {
-      movieComponent = this.movieDetailComponentWith(movie);
-
-      if (_.isEmpty(this.state.showDetailClass)) {
-        this.setState({
-          movieDetailIndex: movieIndex,
-          showDetailClass: 'container--card-with-detail',
-          showDetail: '--show'
-        });
-
-      } else {
-        console.log('bitch')
-        this.setState({
-          movieDetailIndex: 0,
-          showDetailClass: '',
-          showDetail: '--hidden'
-        });
-      }
-        
+    } else {
+      this.setState({
+        movieIndex: movieIndex,
+        addDetailAfter: movieInRow * this.state.cardsPerRow
+      });
     }
-
-    this.setState({
-      addDetailAfter: movieInRow * this.state.cardsPerRow,
-      movieDetail: movieComponent
-    });
   }
 
-  movieDetailComponentWith(movie) {
+  card(movie, shouldDetail) {
     return (
-      <div key='card-detail'
-           className={'container--flex' +
-                      ' container--flex--priority0' +
-                      ' container--flex--row' +
-                      ' container--card-detail' +
-                      ' container--card-detail' +
-                      this.state.showDetail}>
-        <MovieDetail movie={movie}
-                     showDetail={this.state.showDetail}/>
-      </div>
-    )
+      <Card key={'card-' + movie.id}
+            movie={movie}
+            shouldDetail={shouldDetail}
+            showDetail={this.showDetail.bind(this)}
+            onPinMovie={(movie) => {
+              this.props.onPinMovie(movie);
+            }}/>
+    );
   }
 
-  setDummyContainer(numberOfMovies) {
-    const cardsPerRow = Math.floor(window.innerWidth / CARD_SIZE);
-    const rowsFilled = Math.floor(numberOfMovies/cardsPerRow);
-    const cardsLastRow = numberOfMovies - (cardsPerRow * rowsFilled);
-    const itemsLeft = cardsPerRow - cardsLastRow;
-    const dummyWidth = itemsLeft * CARD_SIZE;
+  detail() {
+    const movieIndex = this.state.movieIndex;
 
-    this.setState({
-      cardsPerRow: cardsPerRow,
-      dummyWidth: dummyWidth
-    });
+    return(
+      <CardDetail key='card-detail'
+                  movie={this.props.movies[movieIndex - 1]}
+                  movieIndex={movieIndex}/>
+    );
+  }
+
+  dummy() {
+    return (
+      <DummyCard key='dummy-card'
+                 movies={this.props.movies}
+                 cardsPerRow={this.state.cardsPerRow}/>
+    );
   }
 
   cards() {
     let deck = [];
+    let shouldDetail = false;
+    let detailIt = false;
+    let lastRowItem = false;
 
-    {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].forEach((i) => { 
-      for (const [index, movie] of this.props.movies.entries()) {
-        console.log(index)
+    for (const [index, movie] of this.props.movies.entries()) {
+      shouldDetail = (this.state.movieIndex == index + 1);
 
-        let detailClass = '';
-
-        if (this.state.movieDetailIndex == i) {
-          detailClass = this.state.showDetailClass;
-        }
-
-        const test = (
-          <div key={'container-' + (movie.id + i)}
-               className={'container--flex' +
-                          ' container--flex--priority0' +
-                          ' container--flex--row' +
-                          ' container--detail-arrow ' +
-                          detailClass}>
-            <MovieCard key={(movie.id + i)}
-                       movie={movie}
-                       showDetail={ (movie) => {
-                         this.showDetail(movie);
-                       }}
-                       onPin={ (movie) => {
-                         this.props.onPinMovie(movie)
-                       }}/>
-          </div>
-        )
-
-        deck.push(test);
-
-        // @TODO when real data arrives change i for (index + 1)
-        if (this.state.addDetailAfter == i) {
-          deck.push(this.state.movieDetail);
-        }
+      if (!detailIt) {
+        detailIt = shouldDetail;
       }
-    })}
-    
-    const dummyWidth = {width: this.state.dummyWidth + 'px'}
 
-    deck.push(
-      <div key='dummy-expandable-container'
-           className={'container--flex' +
-                      ' container--flex--priority0' +
-                      ' container--flex--row'}
-           style={dummyWidth}/>
-    )
+      lastRowItem = (this.state.addDetailAfter == index + 1);
+
+      deck.push(this.card(movie, shouldDetail));
+
+      if (detailIt && lastRowItem) {
+        deck.push(this.detail());
+      }
+    }
+
+    deck.push(this.dummy());
+
+    if (detailIt && !lastRowItem) {
+      deck.push(this.detail());
+    }
 
     return deck;
   }
 
   render() {
-    const containerRow = 'container--flex container--flex--row';
+    if (_.isEmpty(this.props.movies)) { return null;}
 
     return (
-      <div className={containerRow +
-                      ' container--deck'}>
+      <div className='container__deck -flex-row'>
         {this.cards()}
       </div>
     );

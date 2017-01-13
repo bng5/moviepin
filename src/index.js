@@ -15,5 +15,6 @@ const render = (component) => {
   );
 };
 
+// render(<Dashboard movies={[]}/>)
 render(<Dashboard movies={MoviesMock}/>)
 // render(<Landing/>)

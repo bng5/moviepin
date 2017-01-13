@@ -1,27 +1,17 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
 
 class Overlay extends Component {
 
-  toggleOverlay() {
-    if (this.props.onClose) {
-      this.props.onClose();
-    }
-  }
-
   render() {
+    const inEffect = this.props.inEffect;
+    const outEffect = this.props.outEffect;
+
     return (
-      <div className={'container' +
-                      ' container--full-screen' +
-                      ' container--flex' +
-                      ' container--flex--row' +
-                      ' container--flex--align-center' +
-                      ' container--flex--align-middle' +
-                      ' container--overlay' +
-                      ' overlay' + this.props.showEffect + this.props.hidden}>
+      <div className={'overlay -full-screen -flex-row -middle ' +
+                      inEffect + ' ' + outEffect}>
         <a className='overlay__close'
            onClick={() => {
-             this.toggleOverlay();
+             this.props.onClose();
            }}>
           <span className='icon-circle-cross'></span>
         </a>
@@ -33,8 +23,8 @@ class Overlay extends Component {
 }
 
 Overlay.defaultProps = {
-  hidden: '--hidden',
-  showEffect: ''
+  outEffect: '',
+  inEffect: ''
 };
 
 export default Overlay;

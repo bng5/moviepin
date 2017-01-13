@@ -12,7 +12,7 @@ class AccessMenu extends Component {
                     this.props.showFormFor('signin');
                   }}/>
         <MenuLink linkId='join-link'
-                  menuLinkClassName='menu__link--emphasis'
+                  menuLinkClassName='-emphasis'
                   label='Join'
                   onClick={() => {
                     this.props.showFormFor('join');

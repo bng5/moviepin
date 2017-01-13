@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 
 class MenuLink extends Component {
   render() {
+    console.log(this.props)
     return (
-      <li className='menu__item'>
+      <li className={'menu__item ' + this.props.menuItemClassName}>
         <a id={this.props.linkId}
-           className={'menu__link ' + this.props.menuLinkClassName}
+           className={'menu__link -regular ' + this.props.menuLinkClassName}
            onClick={() => {
              this.props.onClick();
            }}>{this.props.label}</a>
@@ -17,11 +18,16 @@ class MenuLink extends Component {
 class AbstractMenu extends Component {
   render() {
     return (
-      <ul className={'menu ' + this.props.className }>
+      <ul className={this.props.className }>
         {this.props.children}
       </ul>
     );
   }
+}
+
+MenuLink.defaultProps = {
+  menuItemClassName: '',
+  menuLinkClassName: ''
 }
 
 export { AbstractMenu, MenuLink };

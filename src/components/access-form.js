@@ -5,15 +5,15 @@ class AccessForm extends Component {
     super(props);
 
     this.state = {
-      disableOrActive: 'disabled'
+      disableOrActive: '-disabled'
     };
   }
 
   activateSubmitButton(props) {
     if (props.shouldDisable) {
-      this.setState({ disableOrActive: 'disabled' });
+      this.setState({ disableOrActive: '-disabled' });
     } else {
-      this.setState({ disableOrActive: 'active' });
+      this.setState({ disableOrActive: '-active' });
     }
   }
 
@@ -27,12 +27,12 @@ class AccessForm extends Component {
         {this.props.children}
 
         <input type='submit'
-               className={'form__submit form__submit--' +
+               className={'form__submit ' +
                           this.state.disableOrActive}
                disabled={this.props.shouldDisable}
                value={this.props.submitLabel}/>
 
-        <div className='form__submit form__submit--fb'>
+        <div className='form__submit -fb'>
           <a>fb</a>
         </div>
       </form>
