@@ -23,23 +23,28 @@ class MovieDetail extends Component {
     if (!movie) { return null; }
 
     return (
-      <div key='movie-detail'
-           className={'card__detail ' +
-                      this.props.showDetail}>
+      <div key='details'
+           className='card__detail -with-react-transition'>
 
-        <p className='detail'>
-          <span className='detail__year'>
+        <p key='detail-year'
+           className='detail'>
+          <span key='detail-year-span'
+                className='detail__year'>
             {movie.year}
           </span>
         </p>
 
-        <p className='detail'>
+        <p key='detail-overview'
+           className='overview'>
           {movie.overview}
         </p>
 
-        <a className={'detail__pinit -next-to-poster ' + this.state.pinit}
+        <a key='detail-pin'
+           className={'detail__pinit -next-to-poster ' +
+           this.state.pinit}
           onClick={this.togglePin.bind(this)}>
-          <span className='icon-pin'></span>
+          <span key='detail-pin-icon'
+                className='icon-pin'></span>
         </a>
       </div>
     );  

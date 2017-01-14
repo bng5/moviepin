@@ -21,17 +21,19 @@ class MovieCard extends Component {
 
   render() {
     return (
-      <div className='card'>
-        <div className='card__poster'
+      <div key='card' className='card'>
+        <div key='card-poster' className='card__poster'
              onClick={() => {
                this.props.showDetail(this.props.movie);
              }}>
-          <img className='card__poster -picture' src={this.props.movie.poster}/>
+          <img key='poster-picture' className='card__poster -picture'
+               src={this.props.movie.poster}/>
         </div>
 
-        <a className={'card__pinit -next-to-poster ' + this.state.pinit}
-                onClick={this.togglePin.bind(this)}>
-          <span className='icon-pin'></span>
+        <a key='poster-pin'
+           className={'card__pinit -next-to-poster ' + this.state.pinit}
+           onClick={this.togglePin.bind(this)}>
+          <span key='icon-pin' className='icon-pin'></span>
         </a>
       </div>
     );  

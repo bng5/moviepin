@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import _ from 'lodash';
 
@@ -103,9 +104,19 @@ class MovieDeck extends Component {
     if (_.isEmpty(this.props.movies)) { return null;}
 
     return (
-      <div className='container__deck -flex-row'>
+      <ReactCSSTransitionGroup key={'rcsstg'}
+                               component='div'
+                               className='container__deck -flex-row'
+                               transitionName={{
+                                 enter: 'enter',
+                                 enterActive: 'show',
+                                 leave: 'leave',
+                                 leaveActive: 'hidden'
+                               }}
+                               transitionEnterTimeout={2000}
+                               transitionLeaveTimeout={2000}>
         {this.cards()}
-      </div>
+      </ReactCSSTransitionGroup>
     );
   }
 }

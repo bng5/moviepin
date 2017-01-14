@@ -6,10 +6,10 @@ class CardDetail extends Component {
 
   showDetailClass() {
     if (this.props.movieIndex > 0) {
-      return '-show';
+      return 'transition-enter-show';
     }
 
-    return '-hidden';
+    return 'transition-leave-hidden';
   }
 
   render() {
@@ -21,9 +21,11 @@ class CardDetail extends Component {
     return (
       <div key='card-detail'
            className={'deck-detail -flex-row -priority0 ' + showDetail}>
-        <MovieDetail movie={this.props.movie}
-                     showDetail={showDetail}/>
-        <div className={'card__detail -as-cover ' + showDetail}></div>
+        <MovieDetail movie={this.props.movie}/>
+        <div key='cover-detail'
+             className={'card__detail ' +
+                        '-with-react-transition ' +
+                        '-as-cover '}></div>
       </div>
     )
   }

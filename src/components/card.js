@@ -17,8 +17,9 @@ class Card extends Component {
     const detailClass = this.detailClassForIndex();
 
     return (
-      <div className={'deck-card -flex-row -priority0 ' +
-                      '-up-arrow ' + detailClass}>
+      <div key='deck-card'
+          className={'deck-card -flex-row -priority0 ' +
+                     '-up-arrow ' + detailClass}>
         <MovieCard key={movie.id}
                    movie={movie}
                    showDetail={ (movie) => {
