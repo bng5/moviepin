@@ -47,21 +47,11 @@ class Dashboard extends Component {
       this.setState({
         headerClass: '-as-header'
       });
-
-      _.delay(() => {
-        // this.setState({
-        //   searchClass: '-center-top'
-        // });
-      }, 2000);
     }
   }
 
   componentWillMount() {
     this.configureHeaderStyle();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.configureHeaderStyle(nextProps);
   }
 
   render() {
@@ -91,7 +81,8 @@ class Dashboard extends Component {
           </div>
 
           <MovieDeck movies={this.props.movies}
-                     onPinMovie={this.pinMovie.bind(this)}/>
+                     onPinMovie={this.pinMovie.bind(this)}
+                     windowSize={this.props.windowSize}/>
         </div>
       </div>
     );

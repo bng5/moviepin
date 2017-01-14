@@ -14,7 +14,7 @@ class MovieDeck extends Component {
     super(props);
 
     this.state = {
-      cardsPerRow: Math.floor(window.innerWidth / Utils.CARD_SIZE),
+      cardsPerRow: Math.floor(this.props.windowSize.width / Utils.CARD_SIZE),
       movieIndex: 0,
       addDetailAfter: 0,
       detailInRow: 0,
@@ -75,7 +75,8 @@ class MovieDeck extends Component {
     return (
       <DummyCard key='dummy-card'
                  movies={this.props.movies}
-                 cardsPerRow={this.state.cardsPerRow}/>
+                 cardsPerRow={this.state.cardsPerRow}
+                 windowSize={this.props.windowSize}/>
     );
   }
 
@@ -84,20 +85,24 @@ class MovieDeck extends Component {
     let shouldDetail = false;
     let detailIt = false;
     let lastRowItem = false;
+    let isRendered = false;
 
     for (let [index, movie] of this.props.movies.entries()) {
       shouldDetail = (this.state.movieIndex == index + 1);
       movie.index = index + 1;
 
-      if (!detailIt) {
+      if (!detailIt && shouldDetail) {
         detailIt = shouldDetail;
       }
 
-      lastRowItem = (this.state.addDetailAfter == index + 1);
+      if (!lastRowItem && (this.state.addDetailAfter == index + 1)) {
+        lastRowItem = true;
+      }
 
       deck.push(this.card(movie, shouldDetail));
 
-      if (detailIt && lastRowItem) {
+      if (detailIt && lastRowItem && !isRendered) {
+        isRendered = true;
         deck.push(this.detail());
       }
     }
@@ -109,6 +114,17 @@ class MovieDeck extends Component {
     }
 
     return deck;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const currentWindowWidth = this.props.windowSize.width;
+    const nextWindowWidth = nextProps.windowSize.width;
+    
+    if (currentWindowWidth != nextWindowWidth) {
+      this.setState({
+        cardsPerRow: Math.floor(nextProps.windowSize.width / Utils.CARD_SIZE)
+      });
+    }
   }
 
   render() {

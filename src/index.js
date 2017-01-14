@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Landing from './views/landing';
-import Dashboard from './views/dashboard';
 
 import Styles from './styles/main.scss';
 
 import MoviesMock from './mocks/movies';
+
+import MainLayout from './views/main-layout';
 
 const render = (component) => {
   ReactDOM.render(
@@ -15,6 +16,5 @@ const render = (component) => {
   );
 };
 
-// render(<Dashboard movies={[]}/>)
-render(<Dashboard movies={MoviesMock}/>)
+render(<MainLayout movies={MoviesMock}/>)
 // render(<Landing/>)

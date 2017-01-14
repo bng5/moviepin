@@ -8,18 +8,22 @@ class DummyCard extends Component {
 
 
     this.state = {
-      dummyWidth: this.dummyCardWidth()
+      dummyWidth: this.dummyCardWidth(this.props)
     };
   }
 
-  dummyCardWidth() {
-    const numberOfMovies = this.props.movies.length;
-    const cardsPerRow = this.props.cardsPerRow;
+  dummyCardWidth(props) {
+    const numberOfMovies = props.movies.length;
+    const cardsPerRow = props.cardsPerRow;
     const rowsFilled = Math.floor(numberOfMovies/cardsPerRow);
     const cardsLastRow = numberOfMovies - (cardsPerRow * rowsFilled);
     const itemsLeft = cardsPerRow - cardsLastRow;
 
     return itemsLeft * Utils.CARD_SIZE;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.dummyCardWidth(nextProps);
   }
 
   render() {
