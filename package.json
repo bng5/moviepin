@@ -7,6 +7,7 @@
     "rootDir": "./src"
   },
   "scripts": {
+    "build": "./node_modules/webpack/bin/webpack.js -p",
     "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline",
     "test": "./node_modules/jest/bin/jest.js --watch"
   },
