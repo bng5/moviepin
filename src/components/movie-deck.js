@@ -3,11 +3,10 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import _ from 'lodash';
 
+import Utils from '../utils';
 import Card from './card';
 import DummyCard from './dummy-card';
 import CardDetail from './card-detail';
-
-const CARD_SIZE = 295;
 
 class MovieDeck extends Component {
 
@@ -15,26 +14,35 @@ class MovieDeck extends Component {
     super(props);
 
     this.state = {
-      cardsPerRow: Math.floor(window.innerWidth / CARD_SIZE),
+      cardsPerRow: Math.floor(window.innerWidth / Utils.CARD_SIZE),
       movieIndex: 0,
-      addDetailAfter: 0
+      addDetailAfter: 0,
+      detailInRow: 0,
+      isSameRow: false
     };
   }
 
   showDetail(movie) {
     const movieIndex = _.findIndex(this.props.movies, { id: movie.id } ) + 1;
     const movieInRow = Math.ceil(movieIndex/this.state.cardsPerRow);
-    
+    const isSameRow = (this.state.detailInRow == movieInRow) &&
+                      (this.state.detailInRow > 0) &&
+                      (movieIndex != this.state.movieIndex);
+
     if (movieIndex == this.state.movieIndex) {
       this.setState({
         movieIndex: 0,
-        addDetailAfter: 0
+        addDetailAfter: 0,
+        detailInRow: 0,
+        isSameRow: false
       });
 
     } else {
       this.setState({
         movieIndex: movieIndex,
-        addDetailAfter: movieInRow * this.state.cardsPerRow
+        addDetailAfter: movieInRow * this.state.cardsPerRow,
+        detailInRow: movieInRow,
+        isSameRow: isSameRow
       });
     }
   }
@@ -44,6 +52,8 @@ class MovieDeck extends Component {
       <Card key={'card-' + movie.id}
             movie={movie}
             shouldDetail={shouldDetail}
+            isSameRow={this.state.isSameRow}
+            movieIndex={this.state.movieIndex}
             showDetail={this.showDetail.bind(this)}
             onPinMovie={(movie) => {
               this.props.onPinMovie(movie);
@@ -75,8 +85,9 @@ class MovieDeck extends Component {
     let detailIt = false;
     let lastRowItem = false;
 
-    for (const [index, movie] of this.props.movies.entries()) {
+    for (let [index, movie] of this.props.movies.entries()) {
       shouldDetail = (this.state.movieIndex == index + 1);
+      movie.index = index + 1;
 
       if (!detailIt) {
         detailIt = shouldDetail;

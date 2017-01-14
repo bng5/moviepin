@@ -5,11 +5,21 @@ import MovieCard from './movie-card';
 class Card extends Component {
 
   detailClassForIndex() {
+    let arrowClass = [];
+
     if (this.props.shouldDetail) {
-      return '-arrow-for-this';
+      arrowClass.push('-arrow-for-this');
     }
 
-    return '';
+    if (this.props.isSameRow) {
+      arrowClass.push('-arrow-in-row');
+
+      if (this.props.movieIndex == this.props.movie.index) {
+        arrowClass.push('-arrow-in-row-for-this');
+      }
+    }
+
+    return arrowClass.join(' ');
   }
 
   render() {

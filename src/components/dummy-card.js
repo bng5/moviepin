@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Utils from '../utils';
+
 class DummyCard extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +19,7 @@ class DummyCard extends Component {
     const cardsLastRow = numberOfMovies - (cardsPerRow * rowsFilled);
     const itemsLeft = cardsPerRow - cardsLastRow;
 
-    return itemsLeft * 295;
+    return itemsLeft * Utils.CARD_SIZE;
   }
 
   render() {

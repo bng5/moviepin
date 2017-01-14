@@ -42,7 +42,7 @@
     @extend %up-arrow;
 
     &::after {
-      transform: translate(4.5em, 20.3em);
+      animation: upArrow 5.5s forwards;
     }
   }
 
@@ -50,7 +50,19 @@
     @extend %arrow-for-this;
 
     &::after {
-      transform: translate(4.5em, 18.5em);
+      animation: arrowThis .5s .8s forwards;
+    }
+  }
+
+  &.-arrow-in-row {
+    &::after {
+      animation: upArrow .5s forwards;
+    }
+  }
+
+  &.-arrow-in-row-for-this {
+    &::after {
+      animation: arrowThis .5s forwards;
     }
   }
 }
