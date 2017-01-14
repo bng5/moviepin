@@ -34,6 +34,7 @@
 %up-arrow {
 
   &::after {
+    -webkit-backface-visibility: hidden;
     border-bottom: 20px solid $alt-background-color;
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
@@ -41,16 +42,20 @@
     height: 0;
     opacity: 0;
     position: absolute;
-    transform: translate(4.5em, 20em);
-    transition: all .5s ease-in;
+    -webkit-transform: translateZ(0);
+    transform: translate(6.8em, 23em);
+    transition: all .5s .7s ease-in;
     width: 0;
+    z-index: 99;
   }
 }
 
 %arrow-for-this {
   &::after {
+    -webkit-backface-visibility: hidden;
     opacity: 1;
-    transform: translate(4.5em, 21em);
-    transition: all .5s ease-in;
+    -webkit-transform: translateZ(0);
+    transform: translate(6.8em, 21.5em);
+    transition: all .5s .8s ease-in;
   }
 }

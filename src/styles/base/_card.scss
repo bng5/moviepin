@@ -5,25 +5,25 @@
   // this is an ugly hack related to the use of ReactCSSTransition
   // scss-lint:disable NestingDepth
   &.transition-enter-show {
-    animation: openDetail 2s forwards;
+    animation: openDetail $detail-box-time forwards;
 
     .-with-react-transition {
-      animation: openDetailPadding 2s forwards;
+      animation: openDetailPadding $detail-box-time forwards;
 
       &.-as-cover {
-        animation: openDetailCover 2s forwards;
+        animation: openDetailCover $detail-box-time forwards;
       }
     }
   }
 
   &.leave.hidden {
-    animation: closeDetail 2s forwards;
+    animation: closeDetail $detail-box-time forwards;
 
     .-with-react-transition {
-      animation: closeDetailPadding 2s forwards;
+      animation: closeDetailPadding $detail-box-time forwards;
 
       &.-as-cover {
-        animation: closeDetailCover 2s forwards;
+        animation: closeDetailCover $detail-box-time forwards;
       }
     }
   }
@@ -32,7 +32,7 @@
 
 .deck-card {
   background-color: $secondary-color;
-  height: 18.5em;
+  height: 19.5em;
   margin: 3em 2.4em .8em;
   overflow: hidden;
   padding: .2em 2em .2em .2em;
@@ -50,7 +50,7 @@
     @extend %arrow-for-this;
 
     &::after {
-      transform: translate(4.5em, 18.3em);
+      transform: translate(4.5em, 18.5em);
     }
   }
 }
@@ -113,6 +113,7 @@
     height: 12em;
     left: -3px;
     position: fixed;
+    top: -13px;
     width: 102%;
     z-index: 1;
 
