@@ -13,16 +13,18 @@ describe ('<MovieDetail>', () => {
   });
 
   it ('should render MovieDetail', () => {
-    const cardPoster = wrapper.find('.card--detail');
+    const cardPoster = wrapper.find('.card__detail');
 
     expect(cardPoster.length).toBe(1);
-    expect(cardPoster.find('.card__poster').length).toBe(1);
-    expect(cardPoster.find('.card__pin').length).toBe(1);
+    expect(cardPoster.find('.detail').length).toBe(1);
+    expect(cardPoster.find('.overview').length).toBe(1);
   });
 
   it ('should render movie details', () => {
-    expect(wrapper.contains(<p className='movie__detail'>
-                              <span className='movie__detail--year'>
+    expect(wrapper.contains(<p key='detail-year'
+                               className='detail'>
+                              <span key='detail-year-span'
+                                    className='detail__year'>
                                 2000
                               </span>
                             </p>))
@@ -30,12 +32,12 @@ describe ('<MovieDetail>', () => {
   });
 
   it ('should toggle add and remove movie', () => {
-    wrapper.find('.card--detail .card__pin').simulate('click');
-    expect(wrapper.find('.card--detail .card__pin').length).toBe(0)
-    expect(wrapper.find('.card--detail .card__unpin').length).toBe(1)
+    wrapper.find('.card__detail .detail__pinit.-pin').simulate('click');
+    expect(wrapper.find('.card__detail .detail__pinit.-pin').length).toBe(0)
+    expect(wrapper.find('.card__detail .detail__pinit.-unpin').length).toBe(1)
 
-    wrapper.find('.card--detail .card__unpin').simulate('click');
-    expect(wrapper.find('.card--detail .card__unpin').length).toBe(0)
-    expect(wrapper.find('.card--detail .card__pin').length).toBe(1)
+    wrapper.find('.card__detail .detail__pinit').simulate('click');
+    expect(wrapper.find('.card__detail .detail__pinit.-unpin').length).toBe(0)
+    expect(wrapper.find('.card__detail .detail__pinit.-pin').length).toBe(1)
   });
 });

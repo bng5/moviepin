@@ -26,26 +26,24 @@ describe ('<MovieCard>', () => {
   beforeEach(() => {
     wrapper = shallow(<MovieCard movie={movie}
                                  onPin={(movie) => {
-                                   return;
+                                   return movie;
                                  }}/>);
   });
 
   it ('should render MovieCard', () => {
-    const cardPoster = wrapper.find('.card--poster');
-
-    expect(cardPoster.length).toBe(1);
-    expect(cardPoster.find('.card__poster').length).toBe(1);
+    expect(wrapper.length).toBe(1);
+    expect(wrapper.find('.card__poster').length).toBe(2);
     expect(wrapper.find('.card__pinit').length).toBe(1)
   });
 
   it ('should toggle add and remove movie', () => {
 
     wrapper.find('.card__pinit').simulate('click');
-    expect(wrapper.find('.card__pinit--pin').length).toBe(0)
-    expect(wrapper.find('.card__pinit--unpin').length).toBe(1)
+    expect(wrapper.find('.card__pinit.-pin').length).toBe(0)
+    expect(wrapper.find('.card__pinit.-unpin').length).toBe(1)
 
-    wrapper.find('.card__pinit--unpin').simulate('click');
-    expect(wrapper.find('.card__pinit--unpin').length).toBe(0)
-    // expect(wrapper.find('.card__pinit--pin').length).toBe(1)
+    wrapper.find('.card__pinit.-unpin').simulate('click');
+    expect(wrapper.find('.card__pinit.-unpin').length).toBe(0)
+    expect(wrapper.find('.card__pinit.-pin').length).toBe(1)
   });
 });

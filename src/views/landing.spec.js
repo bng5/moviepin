@@ -5,11 +5,11 @@ import Landing from './landing';
 
 describe ('renders <LandingView>', () => {
   it ('should diplay design elements', () => {
-    const wrapper = shallow(<Landing/>).find('.container--full-screen');
+    const wrapper = shallow(<Landing/>).find('.container__landing');
 
     expect(wrapper.find('AccessMenu').length).toBe(1);
     expect(wrapper.find('.branding__logo').length).toBe(1);
-    expect(wrapper.find('.container__headline--landing').length).toBe(1);
+    expect(wrapper.find('.landing__headline').length).toBe(1);
   });
 });
 

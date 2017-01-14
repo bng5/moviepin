@@ -31,11 +31,13 @@ describe ('renders <Dashboard>', () => {
 
     it ('should show card detail on demand', () => {
       const movieDeck = wrapper.find('MovieDeck').dive();
-      const movieCard = movieDeck.find('MovieCard').first().dive();
+      const movieCard = movieDeck.find('Card').first()
+                                 .dive()
+                                 .find('MovieCard').first().dive();
 
-      movieCard.find('.card.card--poster').simulate('click');
+      movieCard.find('.card .card__poster').first().simulate('click');
 
-      expect(movieDeck.find('MovieDetail')
+      expect(movieDeck.find('CardDetail')
                       .length).toBe(1);
     });
   });
