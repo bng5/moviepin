@@ -13,7 +13,7 @@ module.exports = {
   output: {
     filename: 'moviepin.js',
     path: resolve(__dirname, 'dist'),
-    publicPath: '/'
+    publicPath: '../'
   },
 
   context: resolve(__dirname, 'src'),

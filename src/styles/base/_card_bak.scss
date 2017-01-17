@@ -1,0 +1,141 @@
+.deck-detail {
+  transform: translateX(-.9em);
+  width: 100%;
+
+  // this is an ugly hack related to the use of ReactCSSTransition
+  // scss-lint:disable NestingDepth
+  &.transition-enter-show {
+    animation: openDetail $detail-box-time forwards;
+
+    .-with-react-transition {
+      animation: openDetailPadding $detail-box-time forwards;
+
+      &.-as-cover {
+        animation: openDetailCover $detail-box-time forwards;
+      }
+    }
+  }
+
+  &.leave.hidden {
+    animation: closeDetail $detail-box-time forwards;
+
+    .-with-react-transition {
+      animation: closeDetailPadding $detail-box-time forwards;
+
+      &.-as-cover {
+        animation: closeDetailCover $detail-box-time forwards;
+      }
+    }
+  }
+  // scss-lint:enable NestingDepth
+}
+
+.deck-card {
+  background-color: $secondary-color;
+  height: 19.5em;
+  margin: 3em 2.4em .8em;
+  overflow: hidden;
+  padding: .2em 2em .2em .2em;
+  z-index: $deck-card;
+
+  &.-up-arrow {
+    @extend %up-arrow;
+
+    &::after {
+      animation: upArrow 5.5s forwards;
+    }
+  }
+
+  &.-arrow-for-this {
+    @extend %arrow-for-this;
+
+    &::after {
+      animation: arrowThis .5s .8s forwards;
+    }
+  }
+
+  &.-arrow-in-row {
+    &::after {
+      animation: upArrow .5s forwards;
+    }
+  }
+
+  &.-arrow-in-row-for-this {
+    &::after {
+      animation: arrowThis .5s forwards;
+    }
+  }
+}
+
+.card {
+
+  &__poster {
+    box-shadow: $poster-shadow;
+    cursor: pointer;
+    height: 17em;
+    overflow: hidden;
+    width: 11.5em;
+
+  }
+
+  &.picture {
+    height: auto;
+    width: 100%;
+  }
+
+  &__pinit {
+    border-radius: 2em;
+    box-shadow: $higher-shadow;
+    color: $secondary-color;
+    cursor: pointer;
+    display: none;
+    font-size: 1.7em;
+    left: 5.9em;
+    padding: .3em .3em .2em;
+
+    &:hover {
+      box-shadow: $shadow;
+    }
+
+    &.-next-to-poster {
+      bottom: .8em;
+      position: relative;
+      z-index: $pin-for-poster;
+    }
+
+    &.-pin {
+      background-color: $emphasis-color;
+    }
+
+    &.-unpin {
+      background-color: $alternative-emphasis-color;
+      display: inline;
+    }
+  }
+
+  &:hover {
+    .-pin {
+      display: inline;
+    }
+  }
+
+  &__detail {
+    background-color: $alt-background-color;
+    color: $secondary-color;
+    font-family: 'Quicksand', sans-serif;
+    height: 12em;
+    left: -3px;
+    position: fixed;
+    top: -13px;
+    width: 102%;
+    z-index: 1;
+
+    &.-as-cover {
+      background-color: $secondary-color;
+      box-shadow: none;
+      height: 14em;
+      z-index: 2;
+
+    }
+  }
+}
