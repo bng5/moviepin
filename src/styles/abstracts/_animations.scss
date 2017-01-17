@@ -124,13 +124,13 @@
   }
 
   100% {
-    height: 14em;
+    height: 22em;
   }
 }
 
 @keyframes closeDetail {
   0% {
-    height: 14em;
+    height: 22em;
   }
 
   100% {
@@ -145,14 +145,14 @@
   }
 
   100% {
-    height: 12em;
+    height: 20em;
     padding: 1em 4em;
   }
 }
 
 @keyframes closeDetailPadding {
   0% {
-    height: 12em;
+    height: 20em;
     padding: 1em 4em;
   }
 
@@ -168,13 +168,13 @@
   }
 
   100% {
-    transform: translateY(11.1em);
+    transform: translateY(19.1em);
   }
 }
 
 @keyframes closeDetailCover {
   0% {
-    transform: translateY(10.1em);
+    transform: translateY(19.1em);
   }
 
   100% {
