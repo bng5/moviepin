@@ -5,6 +5,8 @@ import AccessMenu from '../components/access-menu';
 import SignIn from '../components/signin';
 import Join from '../components/join';
 
+import Logo from '../images/logo.png';
+
 class Landing extends Component {
 
   constructor() {
@@ -56,9 +58,9 @@ class Landing extends Component {
           <div className={'landing__branding -flex-row ' +
                           '-priority2 -center-bottom'}>
             <div className='branding__logo'> 
-              <span className='logo__icon icon-pin -emphasis'></span>
               <h1 className='logo__name'>
-                Movie<span className='-emphasis'>Pin</span>
+                <span className='-hidden'>MoviePin</span>
+                <img className='-as-image' src={Logo} alt='moviepin'/>
               </h1>
             </div>
           </div>

@@ -14,12 +14,16 @@ class MovieDeck extends Component {
     super(props);
 
     this.state = {
-      cardsPerRow: Math.floor(this.props.windowSize.width / Utils.CARD_SIZE),
+      cardsPerRow: Math.floor(this.props.windowSize.width / this.cardSize()),
       movieIndex: 0,
       addDetailAfter: 0,
       detailInRow: 0,
       isSameRow: false
     };
+  }
+
+  cardSize() {
+    return Utils.CARD_SIZE / window.devicePixelRatio;
   }
 
   showDetail(movie) {
@@ -65,7 +69,7 @@ class MovieDeck extends Component {
     const movieIndex = this.state.movieIndex;
 
     return(
-      <CardDetail key='card-detail'
+      <CardDetail key={'card-detail-' + this.state.detailInRow}
                   movie={this.props.movies[movieIndex - 1]}
                   movieIndex={movieIndex}/>
     );
@@ -122,7 +126,7 @@ class MovieDeck extends Component {
     
     if (currentWindowWidth != nextWindowWidth) {
       this.setState({
-        cardsPerRow: Math.floor(nextProps.windowSize.width / Utils.CARD_SIZE)
+        cardsPerRow: Math.floor(nextProps.windowSize.width / this.cardSize())
       });
     }
   }

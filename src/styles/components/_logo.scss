@@ -1,28 +1,30 @@
-.branding {
-  &__logo {
-    color: $alternative-color;
-    text-align: center;
-  }
-}
-
 .header {
   &__logo {
-    min-width: 10em;
+    background-color: $navigation-color;
+    border-radius: 2em;
+    color: $secondary-color;
+    cursor: pointer;
+    font-size: 4.3em;
+    height: 1.1em;
+    margin: .8em 1em 0;
+    padding: .2em .2em .1em;
+    width: 1em;
   }
 }
 
 .logo {
-  &__icon {
-    font-size: 6em;
-    left: .4em;
-    position: relative;
-    top: .25em;
-  }
-
   &__name {
     font-family: 'Righteous', serif;
     font-size: 9em;
     letter-spacing: .015em;
     margin: 0;
+
+    .-hidden {
+      display: none;
+    }
+
+    .-as-image {
+      width: 80%;
+    }
   }
 }
