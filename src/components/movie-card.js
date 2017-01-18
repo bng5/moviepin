@@ -19,9 +19,32 @@ class MovieCard extends Component {
     this.props.onPin(this.props.movie);
   }
 
+  detailClassForIndex() {
+    let arrowClass = [];
+
+    if (this.props.shouldDetail) {
+      arrowClass.push('-arrow-for-this');
+    }
+
+    if (this.props.isSameRow) {
+      arrowClass.push('-arrow-in-row');
+
+      if (this.props.movieIndex == this.props.movie.index) {
+        arrowClass.push('-arrow-in-row-for-this');
+      }
+    }
+
+    return arrowClass.join(' ');
+  }
+
+
   render() {
+    const detailClass = this.detailClassForIndex();
+
     return (
-      <div key='card' className='card'>
+      <div key='deck-card'
+          className={'deck__card ' +
+                     '-up-arrow ' + detailClass}>
         <div key='card-poster' className='card__poster'
              onClick={() => {
                this.props.showDetail(this.props.movie);

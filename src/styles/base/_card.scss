@@ -1,5 +1,5 @@
 .deck-detail {
-  transform: translate(-.9em, 1.8em);
+  transform: translateY(2.7em);
   width: 100%;
   z-index: $deck-detail;
 
@@ -31,20 +31,24 @@
   // scss-lint:enable NestingDepth
 }
 
-.deck-card {
+// scss-lint:disable SelectorFormat
+.deck__card {
+  // scss-lint:enable SelectorFormat
   background-color: $secondary-color;
-  margin: 1.5em 0;
+  height: 28em;
+  margin: 1.7em 0;
   overflow: hidden;
-  padding: .2em 0;
+  padding: 2em .3em .2em;
   z-index: $deck-card;
+
+  &:hover {
+    .-pin {
+      display: inline;
+    }
+  }
 
   &.-up-arrow {
     @extend %up-arrow;
-
-    &::after {
-      margin-left: 3em;
-      margin-top: 15.2em;
-    }
   }
 
   &.-arrow-for-this {
@@ -52,12 +56,6 @@
 
     &::after {
       animation: arrowThis .5s .8s forwards;
-    }
-  }
-
-  &.-arrow-in-row {
-    &::after {
-      animation: upArrow .3s forwards;
     }
   }
 
@@ -69,17 +67,15 @@
 }
 
 .card {
-  height: 535px;
 
   &__poster {
     box-shadow: $poster-shadow;
     cursor: pointer;
-    height: 30em;
+    height: 28em;
     overflow: hidden;
   }
 
   &.picture {
-    height: auto;
     width: 100%;
   }
 
@@ -90,7 +86,6 @@
     cursor: pointer;
     display: none;
     font-size: 5em;
-    left: 2.7em;
     padding: .3em .3em .2em;
 
     &:hover {
@@ -98,10 +93,8 @@
     }
 
     &.-next-to-poster {
-      bottom: 5.65em;
-      left: 1.4em;
-      position: relative;
-      transform: translate(2.6em, 2.3em);
+      position: absolute;
+      transform: translate(1.1em, -6em);
       z-index: $pin-for-poster;
     }
 
@@ -117,17 +110,11 @@
     }
   }
 
-  &:hover {
-    .-pin {
-      display: inline;
-    }
-  }
-
   &__detail {
     background-color: $alt-background-color;
     color: $secondary-color;
     font-family: 'Quicksand', sans-serif;
-    height: 20em;
+    height: 16em;
     left: -3px;
     overflow-y: auto;
     position: fixed;

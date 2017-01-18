@@ -20,7 +20,7 @@ class Dashboard extends Component {
       inOverlayEffect: '',
       outOverlayEffect: '',
       headerClass: '-full-screen',
-      searchClass: '-middle',
+      searchClass: '-right-center',
       overlayView: ''
     };
   }
@@ -54,6 +54,18 @@ class Dashboard extends Component {
     this.configureHeaderStyle();
   }
 
+  overlay() {
+    return (
+      <div>
+        <Overlay inEffect={this.state.inOverlayEffect}
+                 outEffect={this.state.outOverlayEffect}
+                 onClose={ this.closeOverlay.bind(this) }>
+          {this.state.overlayView}
+        </Overlay>
+      </div>
+    );
+  }
+
   render() {
     const inOverlayEffect = this.state.inOverlayEffect;
     const outOverlayEffect = this.state.outOverlayEffect;
@@ -61,22 +73,13 @@ class Dashboard extends Component {
 
     return (
       <div className='container'>
-        <Overlay inEffect={this.state.inOverlayEffect}
-                 outEffect={this.state.outOverlayEffect}
-                 onClose={ this.closeOverlay.bind(this) }>
-          {this.state.overlayView}
-        </Overlay>
 
-        <div className={'container__dashboard -flex-column ' +
+        <div className={'container__dashboard ' +
                         inOverlayEffect + ' ' + outOverlayEffect}>
 
           <div className={'dashboard__header -transparent ' +
                           '-flex-row ' + headerClass}>
-            <div className='header__logo -flex-row -priority0'>
-              <a className='logo__isotype'>
-                <span key='icon-pin' className='icon-pin'></span>
-              </a>
-            </div>
+            <span className='header__blank'/>
             <Search className={ 'header_search -flex-row ' +
                                this.state.searchClass}/>
 

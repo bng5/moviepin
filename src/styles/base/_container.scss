@@ -28,7 +28,7 @@
   }
 
   .-transparent {
-    opacity: .99;
+    opacity: .9;
   }
 
   .-content-push {
@@ -47,6 +47,12 @@
       }
       // scss-lint:enable NestingDepth
     }
+  }
+}
+
+.header {
+  &__blank {
+    width: 13em;
   }
 }
 

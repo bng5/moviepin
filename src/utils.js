@@ -1,5 +1,5 @@
 const Utils = {
-  CARD_SIZE: 320 // in px
+  CARD_SIZE: 308 // in px
 }
 
 export default Utils;

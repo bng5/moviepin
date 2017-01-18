@@ -13,4 +13,3 @@ const render = (component) => {
 };
 
 render(<MainLayout/>)
-// render(<Landing/>)

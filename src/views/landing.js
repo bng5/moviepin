@@ -57,12 +57,10 @@ class Landing extends Component {
 
           <div className={'landing__branding -flex-row ' +
                           '-priority2 -center-bottom'}>
-            <div className='branding__logo'> 
-              <h1 className='logo__name'>
-                <span className='-hidden'>MoviePin</span>
-                <img className='-as-image' src={Logo} alt='moviepin'/>
-              </h1>
-            </div>
+            <h1 className='logo__name'>
+              <span className='-hidden'>MoviePin</span>
+              <img className='-as-image' src={Logo} alt='moviepin'/>
+            </h1>
           </div>
 
           <div className={'landing__headline -flex-row -middle'}>

@@ -12,7 +12,6 @@ class Card extends Component {
     }
 
     if (this.props.isSameRow) {
-      arrowClass.push('-arrow-in-row');
 
       if (this.props.movieIndex == this.props.movie.index) {
         arrowClass.push('-arrow-in-row-for-this');

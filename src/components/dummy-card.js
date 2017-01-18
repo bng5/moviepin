@@ -31,7 +31,7 @@ class DummyCard extends Component {
 
     return (
       <div key='dummy-expandable-container'
-           className='container__dummy -flex-row -priority1'
+           className='container__dummy -flex-row -priority0'
            style={dummyWidth}/>
     );
   }

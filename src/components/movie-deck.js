@@ -4,7 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import _ from 'lodash';
 
 import Utils from '../utils';
-import Card from './card';
+import MovieCard from './movie-card';
 import DummyCard from './dummy-card';
 import CardDetail from './card-detail';
 
@@ -53,15 +53,15 @@ class MovieDeck extends Component {
 
   card(movie, shouldDetail) {
     return (
-      <Card key={'card-' + movie.id}
-            movie={movie}
-            shouldDetail={shouldDetail}
-            isSameRow={this.state.isSameRow}
-            movieIndex={this.state.movieIndex}
-            showDetail={this.showDetail.bind(this)}
-            onPinMovie={(movie) => {
-              this.props.onPinMovie(movie);
-            }}/>
+      <MovieCard key={'card-' + movie.id}
+                 movie={movie}
+                 shouldDetail={shouldDetail}
+                 isSameRow={this.state.isSameRow}
+                 movieIndex={this.state.movieIndex}
+                 showDetail={this.showDetail.bind(this)}
+                 onPinMovie={(movie) => {
+                   this.props.onPinMovie(movie);
+                 }}/>
     );
   }
 

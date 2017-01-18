@@ -1,23 +1,10 @@
-.header {
-  &__logo {
-    background-color: $navigation-color;
-    border-radius: 2em;
-    color: $secondary-color;
-    cursor: pointer;
-    font-size: 4.3em;
-    height: 1.1em;
-    margin: .8em 1em 0;
-    padding: .2em .2em .1em;
-    width: 1em;
-  }
-}
-
 .logo {
   &__name {
     font-family: 'Righteous', serif;
     font-size: 9em;
     letter-spacing: .015em;
     margin: 0;
+    text-align: center;
 
     .-hidden {
       display: none;
