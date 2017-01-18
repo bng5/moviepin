@@ -34,9 +34,9 @@
 %up-arrow {
 
   &::after {
-    border-bottom: 20px solid $alt-background-color;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
+    border-bottom: 40px solid $alt-background-color;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
     content: '';
     height: 0;
     opacity: 0;

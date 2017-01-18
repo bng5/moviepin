@@ -70,9 +70,13 @@ class Dashboard extends Component {
         <div className={'container__dashboard -flex-column ' +
                         inOverlayEffect + ' ' + outOverlayEffect}>
 
-          <div className={'dashboard__header -flex-row ' + headerClass}>
-            <div className='header__logo -flex-row'/>
-
+          <div className={'dashboard__header -transparent ' +
+                          '-flex-row ' + headerClass}>
+            <div className='header__logo -flex-row -priority0'>
+              <a className='logo__isotype'>
+                <span key='icon-pin' className='icon-pin'></span>
+              </a>
+            </div>
             <Search className={ 'header_search -flex-row ' +
                                this.state.searchClass}/>
 

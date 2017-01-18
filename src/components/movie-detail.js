@@ -27,25 +27,17 @@ class MovieDetail extends Component {
            className='card__detail -with-react-transition'>
 
         <p key='detail-year'
-           className='detail'>
+           className='detail -as-summary'>
           <span key='detail-year-span'
                 className='detail__year'>
             {movie.year}
           </span>
         </p>
 
-        <p key='detail-overview'
-           className='overview'>
+        <p key='overview'
+           className='overview -as-summary'>
           {movie.overview}
         </p>
-
-        <a key='detail-pin'
-           className={'detail__pinit -next-to-poster ' +
-           this.state.pinit}
-          onClick={this.togglePin.bind(this)}>
-          <span key='detail-pin-icon'
-                className='icon-pin'></span>
-        </a>
       </div>
     );  
   }  

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import MoviesMock from '../mocks/movies';
+
+import Landing from './landing';
 import Dashboard from './dashboard';
 
 class MainLayout extends Component {
@@ -8,19 +11,20 @@ class MainLayout extends Component {
     super();
 
     this.state = {
-      windowSize: {
-        width: window.innerWidth,
-        height: window.innerHeight
-      }
+      windowSize: this.windowSize()
     };
+  }
+
+  windowSize() {
+    return {
+      width: window.innerWidth / window.devicePixelRatio,
+      height: window.innerHeight / window.devicePixelRatio
+    }
   }
 
   onResize() {
     this.setState({
-      windowSize: {
-        width: window.innerWidth,
-        height: window.innerHeight
-      }
+      windowSize: this.windowSize()
     });
   }
 
@@ -38,7 +42,8 @@ class MainLayout extends Component {
 
   render() {
     return (
-      <Dashboard movies={this.props.movies}
+      // <Landing/>
+      <Dashboard movies={MoviesMock}
                  windowSize={this.state.windowSize}/>
     );
   }

@@ -28,7 +28,7 @@ class Card extends Component {
 
     return (
       <div key='deck-card'
-          className={'deck-card -flex-row -priority0 ' +
+          className={'deck-card -flex-row ' +
                      '-up-arrow ' + detailClass}>
         <MovieCard key={movie.id}
                    movie={movie}
