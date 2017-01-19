@@ -144,3 +144,34 @@
     }
   }
 }
+
+@media (-webkit-device-pixel-ratio: 3) and
+       (min-resolution: 144dpi) and
+       (orientation: landscape) {
+
+// scss-lint:disable SelectorFormat
+  .deck__card {
+// scss-lint:enable SelectorFormat
+    height: 15em;
+  }
+
+  .card {
+    &__poster {
+      height: 15em;
+    }
+
+    &__pinit {
+      font-size: 3em;
+    }
+
+    &__detail {
+      .detail {
+        font-size: 1.4em;
+      }
+
+      .overview {
+        font-size: 1.6em;
+      }
+    }
+  }
+}

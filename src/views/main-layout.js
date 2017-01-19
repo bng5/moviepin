@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import MoviesMock from '../mocks/movies';
 
+import Utils from '../utils';
+
 import Landing from './landing';
 import Dashboard from './dashboard';
 
@@ -16,9 +18,11 @@ class MainLayout extends Component {
   }
 
   windowSize() {
+    const pixelRatio = Utils.pixelRatio();
+
     return {
-      width: window.innerWidth / window.devicePixelRatio,
-      height: window.innerHeight / window.devicePixelRatio
+      width: window.innerWidth / pixelRatio,
+      height: window.innerHeight / pixelRatio
     }
   }
 

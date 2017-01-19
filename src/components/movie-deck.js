@@ -23,7 +23,7 @@ class MovieDeck extends Component {
   }
 
   cardSize() {
-    return Utils.CARD_SIZE / window.devicePixelRatio;
+    return Utils.cardSize() / window.devicePixelRatio;
   }
 
   showDetail(movie) {

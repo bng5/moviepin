@@ -23,3 +23,19 @@
     font-size: 5em;
   }
 }
+
+@media (-webkit-min-device-pixel-ratio: 2) and
+       (min-resolution: 144dpi) and
+       (orientation: landscape) {
+  .menu {
+    &__item {
+      &:first-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &__link {
+      font-size: 4em;
+    }
+  }
+}

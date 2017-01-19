@@ -125,3 +125,13 @@
   @extend %align-center;
   @extend %align-vcenter;
 }
+
+@media (-webkit-min-device-pixel-ratio: 2) and
+       (min-resolution: 144dpi) and
+       (orientation: landscape) {
+  .container {
+    &__deck {
+      padding-top: 9em;
+    }
+  }
+}

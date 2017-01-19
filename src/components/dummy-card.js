@@ -19,11 +19,13 @@ class DummyCard extends Component {
     const cardsLastRow = numberOfMovies - (cardsPerRow * rowsFilled);
     const itemsLeft = cardsPerRow - cardsLastRow;
 
-    return itemsLeft * Utils.CARD_SIZE;
+    return itemsLeft * Utils.cardSize();
   }
 
   componentWillReceiveProps(nextProps) {
-    this.dummyCardWidth(nextProps);
+    this.setState({
+      dummyWidth: this.dummyCardWidth(nextProps)
+    });
   }
 
   render() {
@@ -31,7 +33,7 @@ class DummyCard extends Component {
 
     return (
       <div key='dummy-expandable-container'
-           className='container__dummy -flex-row -priority0'
+           className='container__dummy'
            style={dummyWidth}/>
     );
   }
