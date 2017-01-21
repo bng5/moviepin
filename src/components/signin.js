@@ -32,10 +32,19 @@ class SignIn extends Component {
     this.shouldActivateSubmitButton(this.state.usernameValue, password);
   }
 
+  shouldAccess() {
+    const username = this.state.usernameValue;
+    const password = this.state.passwordValue;
+    const canAccess = username == 'test' && password == 'test';
+
+    this.props.shouldAccess(canAccess);
+  }
+
   render() {
     return (
       <AccessForm submitLabel='Sign In'
-                  shouldDisable={this.state.shouldDisable}>
+                  shouldDisable={this.state.shouldDisable}
+                  shouldAccess={this.shouldAccess.bind(this)}>
         <fieldset className='form__fieldset'>
           <InputField fieldValue={this.state.usernameValue}
                       inputType='text'

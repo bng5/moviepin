@@ -62,12 +62,41 @@ class MainLayout extends Component {
     });
   }
 
-  render() {
+  shouldAccess(canAccess) {
+    if (canAccess) {
+      this.setState({
+        canAccess: canAccess
+      });
+    }
+  }
+
+  landing() {
     return (
-      // <Landing/>
+      <Landing shouldAccess={(canAccess) => {
+        console.log(canAccess)
+        this.shouldAccess(canAccess);
+      }}/>
+    );
+  }
+
+  dashboard() {
+    return (
       <Dashboard movies={this.state.movies}
                  windowSize={this.state.windowSize}
                  searchFor={this.searchFor.bind(this)}/>
+    );
+  }
+
+  render() {
+    let displayToShow;
+
+    if (!this.state.canAccess) {
+      displayToShow = this.landing();
+    } else {
+      displayToShow = this.dashboard();
+    }
+    return (
+      displayToShow
     );
   }
 }

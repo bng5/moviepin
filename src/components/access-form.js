@@ -23,7 +23,11 @@ class AccessForm extends Component {
 
   render() {
     return (
-      <form className='form'>
+      <form className='form'
+            onSubmit={(event) => {
+              event.preventDefault();
+
+              this.props.shouldAccess()}}>
         {this.props.children}
 
         <input type='submit'
@@ -31,10 +35,6 @@ class AccessForm extends Component {
                           this.state.disableOrActive}
                disabled={this.props.shouldDisable}
                value={this.props.submitLabel}/>
-
-        <div className='form__submit -fb'>
-          <a>fb</a>
-        </div>
       </form>
     );
   }

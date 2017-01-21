@@ -51,15 +51,17 @@
   }
 }
 
-@media (min-width: $search-bar-medium) {
+@media (min-width: $small-medium) {
   .form {
     &.-search {
       width: 100%;
     }
 
     &__text-input {
-      max-width: 15.125em;
-      width: 50%;
+      &.-search {
+        max-width: 15.125em;
+        width: 50%;
+      }
     }
   }
 }

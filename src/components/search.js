@@ -22,7 +22,8 @@ class Search extends Component {
   render() {
     return (
       <form className={'form -search ' + this.props.className}>
-          <InputField fieldValue={this.state.searchValue}
+          <InputField className='-search'
+                      fieldValue={this.state.searchValue}
                       inputType='text'
                       inputName='search'
                       onChange={(searchTerm) => {

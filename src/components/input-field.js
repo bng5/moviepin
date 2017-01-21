@@ -9,7 +9,8 @@ class InputField extends Component {
   render() {
     return (
       <input type={this.props.inputType}
-             className='form__text-input'
+             className={'form__text-input ' +
+                        this.props.className}
              name={this.props.inputName}
              value={this.props.fieldValue}
              placeholder={this.props.inputName}

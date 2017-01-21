@@ -13,8 +13,12 @@ class Landing extends Component {
     super();
 
     this.state = {
-      signinForm: <SignIn/>,
-      joinForm: <Join/>,
+      signinForm: <SignIn shouldAccess={(canAccess) => {
+        this.props.shouldAccess(canAccess);
+      }}/>,
+      joinForm: <Join shouldAccess={(canAccess) => {
+        this.props.shouldAccess(canAccess);
+      }}/>,
       inOverlayEffect: '',
       outOverlayEffect: '',
       formToShow: ''

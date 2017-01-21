@@ -7,7 +7,7 @@
   &__close {
     color: $emphasis-color;
     cursor: pointer;
-    font-size: 8em;
+    font-size: 3em;
     position: absolute;
     right: .7em;
     text-shadow: $light-shadow;
@@ -35,6 +35,14 @@
         animation: contentPullRight 1s forwards;
       }
       // scss-lint:enable NestingDepth
+    }
+  }
+}
+
+@media (min-width: $small-medium) {
+  .overlay {
+    &__close {
+      font-size: 5em;
     }
   }
 }
