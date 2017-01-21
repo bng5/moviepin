@@ -15,6 +15,8 @@ class Search extends Component {
     this.setState({
       searchValue: searchTerm
     });
+
+    this.props.searchFor(searchTerm);
   }
 
   render() {

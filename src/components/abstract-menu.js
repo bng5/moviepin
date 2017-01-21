@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 class MenuLink extends Component {
   render() {
-    console.log(this.props)
     return (
       <li className={'menu__item ' + this.props.menuItemClassName}>
         <a id={this.props.linkId}

@@ -13,7 +13,8 @@ class MainLayout extends Component {
     super();
 
     this.state = {
-      windowSize: Utils.windowSize()
+      windowSize: Utils.windowSize(),
+      movies: []
     };
   }
 
@@ -35,11 +36,38 @@ class MainLayout extends Component {
     }
   }
 
+  searchFor(searchTerm) {
+    let movies = [];
+
+    if (searchTerm.length >=3) {
+      movies = MoviesMock.filter((movie) => {
+        return movie.title.match(searchTerm);
+      });
+
+    } else if (searchTerm.length < 3 &&
+               searchTerm.length > 0 &&
+               this.state.movies.length > 0) {
+      movies = this.state.movies;
+
+    } else if (searchTerm.length == 0 &&
+               this.state.movies.length > 0) {
+      movies = [];
+
+    } else {
+      return;
+    }
+    
+    this.setState({
+      movies: movies
+    });
+  }
+
   render() {
     return (
       // <Landing/>
-      <Dashboard movies={MoviesMock}
-                 windowSize={this.state.windowSize}/>
+      <Dashboard movies={this.state.movies}
+                 windowSize={this.state.windowSize}
+                 searchFor={this.searchFor.bind(this)}/>
     );
   }
 }

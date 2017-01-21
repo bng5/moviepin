@@ -25,7 +25,7 @@ const MoviesMock = [
   },
   {
     id: 3,
-    title: 'the avengers',
+    title: 'big fish',
     year: '2012',
     poster: 'https://images-na.ssl-images-amazon.com/images/' +
             'M/MV5BMTEwNzk1MDE0NDBeQTJeQWpwZ15BbWU4MDkwNTM5MjEx._V1_.jpg',
@@ -38,7 +38,7 @@ const MoviesMock = [
   },
   {
     id: 4,
-    title: 'the avengers',
+    title: 'batman',
     year: '2012',
     poster: 'https://image.tmdb.org/t/p/' +
             'w640/cezWGskPY5x7GaglTTRN4Fugfb8.jpg',
@@ -51,7 +51,7 @@ const MoviesMock = [
   },
   {
     id: 5,
-    title: 'the avengers',
+    title: 'filth',
     year: '2012',
     poster: 'https://images-na.ssl-images-amazon.com/images/' +
             'M/MV5BMTc5MjYyOTg4MF5BMl5BanB' +
@@ -65,7 +65,7 @@ const MoviesMock = [
   },
   {
     id: 6,
-    title: 'the avengers',
+    title: 'ratas, ratones y rateros',
     year: '2012',
     poster: 'https://image.tmdb.org/t/p/' +
             'w640/cezWGskPY5x7GaglTTRN4Fugfb8.jpg',
@@ -78,7 +78,7 @@ const MoviesMock = [
   },
   {
     id: 7,
-    title: 'the avengers',
+    title: 'lost in translation',
     year: '2012',
     poster: 'https://image.tmdb.org/t/p/' +
             'w640/cezWGskPY5x7GaglTTRN4Fugfb8.jpg',

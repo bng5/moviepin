@@ -42,28 +42,31 @@ class Dashboard extends Component {
     });
   }
 
-  configureHeaderStyle(properties = this.props) {
-    if (!_.isEmpty(properties.movies)) {
-      this.setState({
-        headerClass: '-as-header'
-      });
+  configureHeaderStyle(alreadyMounted, properties = this.props) {
+    let headerClass = '';
+
+    if (_.isEmpty(properties.movies)) {
+      headerClass = '-full-screen';
+
+      if (alreadyMounted) {
+        headerClass = headerClass.concat(' -animated');
+      }
+
+    } else {
+      headerClass = '-as-header';
     }
+
+    this.setState({
+      headerClass: headerClass
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.configureHeaderStyle(true, nextProps);
   }
 
   componentWillMount() {
-    this.configureHeaderStyle();
-  }
-
-  overlay() {
-    return (
-      <div>
-        <Overlay inEffect={this.state.inOverlayEffect}
-                 outEffect={this.state.outOverlayEffect}
-                 onClose={ this.closeOverlay.bind(this) }>
-          {this.state.overlayView}
-        </Overlay>
-      </div>
-    );
+    this.configureHeaderStyle(false);
   }
 
   render() {
@@ -73,6 +76,11 @@ class Dashboard extends Component {
 
     return (
       <div className='container'>
+        <Overlay inEffect={this.state.inOverlayEffect}
+                 outEffect={this.state.outOverlayEffect}
+                 onClose={ this.closeOverlay.bind(this) }>
+          {this.state.overlayView}
+        </Overlay>
 
         <div className={'container__dashboard ' +
                         inOverlayEffect + ' ' + outOverlayEffect}>
@@ -81,7 +89,10 @@ class Dashboard extends Component {
                           '-flex-row ' + headerClass}>
             <span className='header__blank'/>
             <Search className={ 'header_search -flex-row ' +
-                               this.state.searchClass}/>
+                               this.state.searchClass}
+                    searchFor={(searchTerm) => {
+                      this.props.searchFor(searchTerm);
+                    }}/>
 
             <Menu className='header__menu -flex-row'
                   showFormFor={this.showView.bind(this)}/>
