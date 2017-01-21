@@ -10,7 +10,7 @@
   &__deck {
     flex-wrap: wrap;
     justify-content: center;
-    padding: 14em .1em 5em;
+    padding: 6em .1em 5em;
     width: 100%;
   }
 
@@ -52,7 +52,7 @@
 
 .header {
   &__blank {
-    width: 13em;
+    width: 6em;
   }
 }
 
@@ -124,14 +124,4 @@
 .-middle {
   @extend %align-center;
   @extend %align-vcenter;
-}
-
-@media (-webkit-min-device-pixel-ratio: 2) and
-       (min-resolution: 144dpi) and
-       (orientation: landscape) {
-  .container {
-    &__deck {
-      padding-top: 9em;
-    }
-  }
 }

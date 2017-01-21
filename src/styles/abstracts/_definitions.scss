@@ -34,14 +34,15 @@
 %up-arrow {
 
   &::after {
-    border-bottom: 40px solid $alt-background-color;
-    border-left: 40px solid transparent;
-    border-right: 40px solid transparent;
+    border-bottom: 1em solid $alt-background-color;
+    border-left: 1em solid transparent;
+    border-right: 1em solid transparent;
     content: '';
     height: 0;
+    left: 50%;
     opacity: 0;
     position: absolute;
-    transform: translate(6.5em, 4em);
+    transform: translate(-50%, 2em);
     width: 0;
   }
 }

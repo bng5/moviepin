@@ -14,16 +14,12 @@ class MovieDeck extends Component {
     super(props);
 
     this.state = {
-      cardsPerRow: Math.floor(this.props.windowSize.width / this.cardSize()),
+      cardsPerRow: Math.floor(this.props.windowSize.width / Utils.cardSize()),
       movieIndex: 0,
       addDetailAfter: 0,
       detailInRow: 0,
       isSameRow: false
     };
-  }
-
-  cardSize() {
-    return Utils.cardSize() / window.devicePixelRatio;
   }
 
   showDetail(movie) {
@@ -126,7 +122,7 @@ class MovieDeck extends Component {
     
     if (currentWindowWidth != nextWindowWidth) {
       this.setState({
-        cardsPerRow: Math.floor(nextProps.windowSize.width / this.cardSize())
+        cardsPerRow: Math.floor(nextProps.windowSize.width / Utils.cardSize())
       });
     }
   }
@@ -145,7 +141,7 @@ class MovieDeck extends Component {
                                  leaveActive: 'hidden'
                                }}
                                transitionEnterTimeout={2000}
-                               transitionLeaveTimeout={2000}>
+                               transitionLeaveTimeout={2500}>
         {this.cards()}
       </ReactCSSTransitionGroup>
     );

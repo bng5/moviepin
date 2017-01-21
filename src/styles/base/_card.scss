@@ -6,19 +6,19 @@
   // this is an ugly hack related to the use of ReactCSSTransition
   // scss-lint:disable NestingDepth
   &.transition-enter-show {
-    animation: openDetail $detail-box-time forwards;
+    animation: openDetail $detail-time forwards;
 
     .-with-react-transition {
       animation: openDetailPadding $detail-box-time forwards;
 
       &.-as-cover {
-        animation: openDetailCover $detail-box-time forwards;
+        animation: openDetailCover $detail-box-time $cover-delay forwards;
       }
     }
   }
 
   &.leave.hidden {
-    animation: closeDetail $detail-box-time forwards;
+    animation: closeDetail $detail-close-time forwards;
 
     .-with-react-transition {
       animation: closeDetailPadding $detail-box-time forwards;
@@ -35,10 +35,10 @@
 .deck__card {
   // scss-lint:enable SelectorFormat
   background-color: $secondary-color;
-  height: 28em;
-  margin: 1.7em 0;
-  overflow: hidden;
-  padding: 2em .3em .2em;
+  margin-top: .5em;
+  padding: 1em .3em 0;
+  position: relative;
+  width: 6.625em;
   z-index: $deck-card;
 
   &:hover {
@@ -71,12 +71,13 @@
   &__poster {
     box-shadow: $poster-shadow;
     cursor: pointer;
-    height: 28em;
+    height: 9.5em;
+    object-fit: cover;
     overflow: hidden;
-  }
 
-  &.picture {
-    width: 100%;
+    .-picture {
+      width: 100%;
+    }
   }
 
   &__pinit {
@@ -85,16 +86,18 @@
     color: $secondary-color;
     cursor: pointer;
     display: none;
-    font-size: 5em;
-    padding: .3em .3em .2em;
+    font-size: 1.8em;
+    padding: .2em .2em 0;
 
     &:hover {
       box-shadow: $shadow;
     }
 
     &.-next-to-poster {
+      left: 50%;
       position: absolute;
-      transform: translate(1.1em, -6em);
+      top: 0;
+      transform: translateX(-50%);
       z-index: $pin-for-poster;
     }
 
@@ -119,59 +122,60 @@
     overflow-y: auto;
     position: fixed;
     top: -13px;
-    width: 102%;
+    width: 100%;
     z-index: 1;
 
     &.-as-cover {
       background-color: $secondary-color;
       box-shadow: none;
-      height: 22em;
+      height: 8.8em;
+      width: 105%;
       z-index: 2;
 
     }
 
-    .detail {
-      font-size: 1.5em;
-    }
-
     .overview {
-      font-size: 2em;
-      margin-bottom: 2.5em;
+      margin-bottom: 1em;
     }
 
     .-as-summary {
-      width: 90%;
+      font-size: .8em;
+      margin-top: 0;
+      padding-right: 7em;
     }
   }
 }
 
-@media (-webkit-device-pixel-ratio: 3) and
-       (min-resolution: 144dpi) and
-       (orientation: landscape) {
-
+@media (min-width: $medium) {
 // scss-lint:disable SelectorFormat
   .deck__card {
-// scss-lint:enable SelectorFormat
-    height: 15em;
+    width: 10em;
   }
 
   .card {
     &__poster {
-      height: 15em;
+      height: 14.8em;
     }
 
     &__pinit {
-      font-size: 3em;
+      font-size: 2.6em;
+      padding: .2em .2em .1em;
     }
 
     &__detail {
+
       .detail {
-        font-size: 1.4em;
+        font-size: 1em;
       }
 
       .overview {
-        font-size: 1.6em;
+        font-size: 1.2em;
+      }
+
+      .-as-summary {
+        padding-right: 1.2em;
       }
     }
   }
+// scss-lint:enable SelectorFormat
 }

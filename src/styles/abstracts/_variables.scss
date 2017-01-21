@@ -1,6 +1,9 @@
 // === variables ===
 
 $detail-box-time: 1.5s;
+$detail-time: 2s;
+$cover-delay: .5s;
+$detail-close-time: 2.5s;
 
 // === layers order ===
 
@@ -57,6 +60,7 @@ $poster-shadow: 0 2px 2px 0 $shadow-4,
 // === @media ===
 $smaller: 360px;
 $small: 640px;
-$medium: 800px;
+$search-bar-medium: 600px;
+$medium: 720px;
 $large: 1230px;
 $x-large: 1600px;

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import MoviesMock from '../mocks/movies';
-
 import Utils from '../utils';
+
+import MoviesMock from '../mocks/movies';
 
 import Landing from './landing';
 import Dashboard from './dashboard';
@@ -13,22 +13,13 @@ class MainLayout extends Component {
     super();
 
     this.state = {
-      windowSize: this.windowSize()
+      windowSize: Utils.windowSize()
     };
-  }
-
-  windowSize() {
-    const pixelRatio = Utils.pixelRatio();
-
-    return {
-      width: window.innerWidth / pixelRatio,
-      height: window.innerHeight / pixelRatio
-    }
   }
 
   onResize() {
     this.setState({
-      windowSize: this.windowSize()
+      windowSize: Utils.windowSize()
     });
   }
 

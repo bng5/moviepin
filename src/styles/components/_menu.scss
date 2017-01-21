@@ -6,36 +6,20 @@
 
 .menu {
   &__item {
-    margin-right: 5em;
+    margin-right: 1.5em;
     text-align: right;
 
     &:first-child {
-      margin-bottom: 2em;
+      margin-bottom: 1em;
     }
 
     &.-for-dashboard {
-      margin-top: 2.5em;
+      margin-top: .5em;
     }
   }
 
   &__link {
     cursor: pointer;
-    font-size: 5em;
-  }
-}
-
-@media (-webkit-min-device-pixel-ratio: 2) and
-       (min-resolution: 144dpi) and
-       (orientation: landscape) {
-  .menu {
-    &__item {
-      &:first-child {
-        margin-bottom: 0;
-      }
-    }
-
-    &__link {
-      font-size: 4em;
-    }
+    font-size: 2em;
   }
 }

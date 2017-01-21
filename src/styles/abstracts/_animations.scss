@@ -84,13 +84,13 @@
   }
 
   100% {
-    height: 14.5em;
+    height: 6em;
   }
 }
 
 @keyframes downFromHeader {
   0% {
-    height: 14.5;
+    height: 6;
   }
 
   100% {
@@ -125,15 +125,15 @@
   }
 
   100% {
-    height: 16em;
-    margin-bottom: 5.7em;
+    height: 8em;
+    margin-bottom: 1.9em;
   }
 }
 
 @keyframes closeDetail {
   0% {
-    height: 16em;
-    margin-bottom: 5.7em;
+    height: 8em;
+    margin-bottom: 1.9em;
   }
 
   100% {
@@ -145,24 +145,24 @@
 @keyframes openDetailPadding {
   0% {
     height: 0;
-    padding: 0 4em;
+    padding: 0 2em;
   }
 
   100% {
-    height: 20em;
-    padding: 1em 4em;
+    height: 5.8em;
+    padding: 1em 2em;
   }
 }
 
 @keyframes closeDetailPadding {
   0% {
-    height: 20em;
-    padding: 1em 4em;
+    height: 5.8em;
+    padding: 1em 2em;
   }
 
   100% {
     height: 0;
-    padding: 0 4em;
+    padding: 0 2em;
   }
 }
 
@@ -172,13 +172,13 @@
   }
 
   100% {
-    transform: translateY(19.1em);
+    transform: translateY(7.8em);
   }
 }
 
 @keyframes closeDetailCover {
   0% {
-    transform: translateY(19.1em);
+    transform: translateY(7.8em);
   }
 
   100% {
@@ -189,7 +189,7 @@
 @keyframes upArrow {
   0% {
     opacity: 1;
-    transform: translate(6.5em, 1.5em);
+    transform: translate(-50%, 1em);
   }
 
   75% {
@@ -198,14 +198,14 @@
 
   100% {
     opacity: 0;
-    transform: translate(6.5em, 2.7em);
+    transform: translate(-50%, 2em);
   }
 }
 
 @keyframes arrowThis {
   0% {
     opacity: 0;
-    transform: translate(6.5em, 2.7em);
+    transform: translate(-50%, 2em);
   }
 
   25% {
@@ -214,65 +214,77 @@
 
   100% {
     opacity: 1;
-    transform: translate(6.5em, 1.5em);
+    transform: translate(-50%, 1em);
 
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and
-       (min-resolution: 144dpi) and
-       (orientation: landscape) {
-
-  @keyframes upToHeader {
+@media (min-width: $medium) {
+  @keyframes openDetail {
     0% {
-      height: 100%;
+      height: 0;
+      margin-bottom: 0;
     }
 
     100% {
-      height: 9.5em;
+      height: 10.3em;
+      margin-bottom: 1.9em;
     }
   }
 
-  @keyframes downFromHeader {
+  @keyframes closeDetail {
     0% {
-      height: 9.5;
+      height: 10.3em;
+      margin-bottom: 1.9em;
     }
 
     100% {
-      height: 100vh;
+      height: 0;
+      margin-bottom: 0;
     }
   }
 
-  @keyframes upArrow {
+  @keyframes openDetailPadding {
     0% {
-      opacity: 1;
-      transform: translate(2.5em, 1.5em);
-    }
-
-    75% {
-      opacity: .9;
+      height: 0;
+      padding: 0 2em;
     }
 
     100% {
-      opacity: 0;
-      transform: translate(2.5em, 2.7em);
+      height: 8.8em;
+      padding: 1em 2em;
     }
   }
 
-  @keyframes arrowThis {
+  @keyframes closeDetailPadding {
     0% {
-      opacity: 0;
-      transform: translate(2.5em, 2.7em);
-    }
-
-    25% {
-      opacity: 1;
+      height: 7.8em;
+      padding: 1em 2em;
     }
 
     100% {
-      opacity: 1;
-      transform: translate(2.5em, 1.5em);
+      height: 0;
+      padding: 0 2em;
+    }
+  }
 
+  @keyframes openDetailCover {
+    0% {
+      transform: translateY(0);
+    }
+
+    100% {
+      transform: translateY(9.8em);
+    }
+  }
+
+  @keyframes closeDetailCover {
+    0% {
+      transform: translateY(9.8em);
+    }
+
+    100% {
+      transform: translateY(0);
     }
   }
 }

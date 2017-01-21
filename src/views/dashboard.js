@@ -96,8 +96,4 @@ class Dashboard extends Component {
   }
 }
 
-Dashboard.defaultProps = {
-  movies: []
-}
-
 export default Dashboard;

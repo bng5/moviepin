@@ -16,7 +16,7 @@ class MovieCard extends Component {
       this.setState({ pinit: '-pin' });
     }
     
-    this.props.onPin(this.props.movie);
+    this.props.onPinMovie(this.props.movie);
   }
 
   detailClassForIndex() {
@@ -49,7 +49,7 @@ class MovieCard extends Component {
              onClick={() => {
                this.props.showDetail(this.props.movie);
              }}>
-          <img key='poster-picture' className='card__poster -picture'
+          <img key='poster-picture' className='card-poster -picture'
                src={this.props.movie.poster}/>
         </div>
 
