@@ -26,7 +26,6 @@ describe ('Join Form', () => {
                   .length).toBe(1)
 
     expect(wrapper.find('.form .form__submit.-disabled').length).toBe(1);
-    expect(wrapper.find('.form .form__submit.-fb').length).toBe(1);
   });
 
   describe ('validates fields', () => {

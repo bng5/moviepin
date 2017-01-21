@@ -22,22 +22,12 @@ describe ('<MovieDetail>', () => {
 
   it ('should render movie details', () => {
     expect(wrapper.contains(<p key='detail-year'
-                               className='detail'>
+                               className='detail -as-summary'>
                               <span key='detail-year-span'
                                     className='detail__year'>
                                 2000
                               </span>
                             </p>))
                   .toBe(true)
-  });
-
-  it ('should toggle add and remove movie', () => {
-    wrapper.find('.card__detail .detail__pinit.-pin').simulate('click');
-    expect(wrapper.find('.card__detail .detail__pinit.-pin').length).toBe(0)
-    expect(wrapper.find('.card__detail .detail__pinit.-unpin').length).toBe(1)
-
-    wrapper.find('.card__detail .detail__pinit').simulate('click');
-    expect(wrapper.find('.card__detail .detail__pinit.-unpin').length).toBe(0)
-    expect(wrapper.find('.card__detail .detail__pinit.-pin').length).toBe(1)
   });
 });

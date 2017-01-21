@@ -73,7 +73,6 @@ class MainLayout extends Component {
   landing() {
     return (
       <Landing shouldAccess={(canAccess) => {
-        console.log(canAccess)
         this.shouldAccess(canAccess);
       }}/>
     );

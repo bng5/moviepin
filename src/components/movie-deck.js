@@ -116,16 +116,6 @@ class MovieDeck extends Component {
     return deck;
   }
 
-  componentWillReceiveProps(nextProps) {
-    const currentWindowWidth = this.props.windowSize.width;
-    const nextWindowWidth = nextProps.windowSize.width;
-    
-    if (currentWindowWidth != nextWindowWidth) {
-      this.setState({
-        cardsPerRow: Math.floor(nextProps.windowSize.width / Utils.cardSize())
-      });
-    }
-  }
 
   render() {
     if (_.isEmpty(this.props.movies)) { return null;}

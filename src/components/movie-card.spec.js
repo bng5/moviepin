@@ -25,14 +25,14 @@ describe ('<MovieCard>', () => {
 
   beforeEach(() => {
     wrapper = shallow(<MovieCard movie={movie}
-                                 onPin={(movie) => {
+                                 onPinMovie={(movie) => {
                                    return movie;
                                  }}/>);
   });
 
   it ('should render MovieCard', () => {
     expect(wrapper.length).toBe(1);
-    expect(wrapper.find('.card__poster').length).toBe(2);
+    expect(wrapper.find('.card__poster').length).toBe(1);
     expect(wrapper.find('.card__pinit').length).toBe(1)
   });
 

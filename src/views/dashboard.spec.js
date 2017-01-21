@@ -20,7 +20,11 @@ describe ('renders <Dashboard>', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = shallow(<Dashboard movies={MoviesMock}/>);
+      wrapper = shallow(<Dashboard movies={MoviesMock}
+                                   windowSize='360'
+                                   searchFor={() => {
+                                     return;
+                                   }}/>);
     });
 
     it ('should display search bar and cards', () => {
@@ -31,11 +35,11 @@ describe ('renders <Dashboard>', () => {
 
     it ('should show card detail on demand', () => {
       const movieDeck = wrapper.find('MovieDeck').dive();
-      const movieCard = movieDeck.find('Card').first()
+      const movieCard = movieDeck.find('MovieCard')
+                                 .first()
                                  .dive()
-                                 .find('MovieCard').first().dive();
 
-      movieCard.find('.card .card__poster').first().simulate('click');
+      movieCard.find('.deck__card .card__poster').first().simulate('click');
 
       expect(movieDeck.find('CardDetail')
                       .length).toBe(1);
