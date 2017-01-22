@@ -4,7 +4,10 @@
   "description": "pin movies worth to watch",
   "main": "index.js",
   "jest": {
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png)$": "<rootDir>/mocks/fileMock.js"
+    }
   },
   "scripts": {
     "build": "./node_modules/webpack/bin/webpack.js -p",
