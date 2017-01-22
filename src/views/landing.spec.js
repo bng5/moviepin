@@ -18,7 +18,7 @@ describe ('renders <LandingView>', () => {
   });
 });
 
-describe.skip ('show access forms', () => {
+describe ('show access forms', () => {
   it ('should render sigin form', () => {
     const wrapper = shallow(<Landing/>);
     const accessMenu = wrapper.find('AccessMenu').dive();

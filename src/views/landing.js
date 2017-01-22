@@ -5,6 +5,8 @@ import AccessMenu from '../components/access-menu';
 import SignIn from '../components/signin';
 import Join from '../components/join';
 
+import Logo from '../images/logo.png';
+
 class Landing extends Component {
 
   constructor() {
