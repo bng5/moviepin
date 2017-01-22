@@ -1,0 +1,29 @@
+#moviepin-firebaseui {
+  .firebaseui-idp-button {
+    background-color: $fb-color;
+    border: 0;
+    border-radius: .6em;
+    cursor: pointer;
+    padding: 1em .6em;
+    width: 20em;
+
+    .firebaseui-idp-icon {
+      height: 2em;
+      margin-right: 1em;
+    }
+  }
+
+  .firebaseui-idp-text {
+    color: $secondary-color;
+    font-size: 1.4em;
+
+    &-long {
+      position: relative;
+      top: -.2em;
+    }
+
+    &-short {
+      display: none;
+    }
+  }
+}

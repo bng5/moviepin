@@ -27,10 +27,10 @@ describe ('show access forms', () => {
 
     accessMenu.find('MenuLink').first().simulate('click');
 
-    expect(wrapper.find('SignIn').length).toBe(1);
+    expect(wrapper.find('#moviepin-firebaseui').length).toBe(1);
   });
 
-  it ('should render join form', () => {
+  it.skip ('should render join form', () => {
     const wrapper = shallow(<Landing/>);
     const accessMenu = wrapper.find('AccessMenu').dive();
 

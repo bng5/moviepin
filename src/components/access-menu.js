@@ -6,11 +6,6 @@ class AccessMenu extends Component {
   render() {
     return (
       <AbstractMenu>
-        <MenuLink linkId='sigin-link'
-                  label='Sign In'
-                  onClick={() => {
-                    this.props.showFormFor('signin');
-                  }}/>
         <MenuLink linkId='join-link'
                   menuLinkClassName='-emphasis'
                   label='Join'

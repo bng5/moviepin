@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Firebase from 'firebase';
+
 import Utils from '../utils';
 
 import MoviesMock from '../mocks/movies';
@@ -12,10 +14,22 @@ class MainLayout extends Component {
   constructor() {
     super();
 
+    Firebase.initializeApp(this.firebaseConfig())
+
     this.state = {
       windowSize: Utils.windowSize(),
       movies: [],
       pinnedMovies: []
+    };
+  }
+
+  firebaseConfig() {
+    return {
+      apiKey: "AIzaSyCq9Nl7z5DB5oh9F_F18rOi2pT27OLfwZQ",
+      authDomain: "moviepin-33835.firebaseapp.com",
+      databaseURL: "https://moviepin-33835.firebaseio.com",
+      storageBucket: "moviepin-33835.appspot.com",
+      messagingSenderId: "958350717889"
     };
   }
 
@@ -36,6 +50,7 @@ class MainLayout extends Component {
   }
 
   componentDidMount() {
+
     if (typeof window != 'undefined') {
       window.addEventListener('resize', this.onResize.bind(this));
     }
@@ -108,6 +123,7 @@ class MainLayout extends Component {
     } else {
       displayToShow = this.dashboard();
     }
+
     return (
       displayToShow
     );

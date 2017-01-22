@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import Firebase from 'firebase';
+import FirebaseUI from 'firebaseui';
+
 import Overlay from '../components/overlay';
 import AccessMenu from '../components/access-menu';
 import SignIn from '../components/signin';
@@ -12,6 +15,8 @@ class Landing extends Component {
   constructor() {
     super();
 
+    this.configureFirebaseUI();
+
     this.state = {
       signinForm: <SignIn shouldAccess={(canAccess) => {
         this.props.shouldAccess(canAccess);
@@ -23,6 +28,24 @@ class Landing extends Component {
       outOverlayEffect: '',
       formToShow: ''
     };
+  }
+
+  configureFirebaseUI() {
+    const uiConfig = {
+      signInOptions: [
+        Firebase.auth.FacebookAuthProvider.PROVIDER_ID
+      ],
+      callbacks: {
+        signInSuccess: (currentUser, credential, redirectUrl) => {
+          this.props.shouldAccess(true);
+          return true;
+        }
+      }
+    };
+    
+    const firebaseUI = new FirebaseUI.auth.AuthUI(Firebase.auth());
+
+    firebaseUI.start('#moviepin-firebaseui', uiConfig);
   }
 
   showFormFor(form) {
@@ -50,7 +73,7 @@ class Landing extends Component {
         <Overlay inEffect={this.state.inOverlayEffect}
                  outEffect={this.state.outOverlayEffect}
                  onClose={ this.closeOverlay.bind(this) }>
-          {accessForm}
+          <div id='moviepin-firebaseui'/>
         </Overlay>
 
         <div className={'container__landing -full-screen -flex-column ' +
