@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import MPFirebase from '../services/firebase';
+
 class MovieCard extends Component {
   constructor(props) {
     super(props);
@@ -12,11 +14,13 @@ class MovieCard extends Component {
   togglePin() {
     if (this.state.pinit == '-pin') {
       this.setState({ pinit: '-unpin' });
+      MPFirebase.saveMovie(this.props.movie);
+
     } else {
       this.setState({ pinit: '-pin' });
+      MPFirebase.deleteMovie(this.props.movie);
     }
-    
-    this.props.onPinMovie(this.props.movie);
+
   }
 
   detailClassForIndex() {

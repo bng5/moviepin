@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 
 import _ from 'lodash';
 
+import MoviesMock from '../mocks/movies';
+
+import MPFirebase from '../services/firebase';
 import Overlay from '../components/overlay';
 import Menu from '../components/menu';
 import Search from '../components/search';
@@ -22,7 +25,8 @@ class Dashboard extends Component {
       inOverlayEffect: '',
       outOverlayEffect: '',
       headerClass: '-full-screen',
-      searchClass: '-right-center'
+      searchClass: '-right-center',
+      movies: []
     };
   }
 
@@ -33,20 +37,16 @@ class Dashboard extends Component {
     });
   }
 
-  togglePin(movie) {
-    console.log('pin movie' + movie.id)
-  }
-
   closeOverlay() {
     this.setState({
       outOverlayEffect: '-hidden'
     });
   }
 
-  configureHeaderStyle(alreadyMounted, properties = this.props) {
+  configureHeaderStyle(alreadyMounted, movies) {
     let headerClass = '';
 
-    if (_.isEmpty(properties.movies)) {
+    if (_.isEmpty(movies)) {
       headerClass = '-full-screen';
 
       if (alreadyMounted) {
@@ -62,12 +62,44 @@ class Dashboard extends Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.configureHeaderStyle(true, nextProps);
+  componentDidMount() {
+    MPFirebase.onPinnedMovie((pinnedMovie) => {
+      if (this.state.movies.length >0) {
+        let movieToPin =this.state.movies.find((movie) => {
+          return pinnedMovie.key == movie.id;
+        });
+
+        movieToPin.isPinned = true;
+      }
+    });
   }
 
-  componentWillMount() {
-    this.configureHeaderStyle(false);
+  searchFor(searchTerm) {
+    let movies = [];
+
+    if (searchTerm.length >=3) {
+      movies = MoviesMock.filter((movie) => {
+        return movie.title.match(searchTerm);
+      });
+
+    } else if (searchTerm.length < 3 &&
+               searchTerm.length > 0 &&
+               this.state.movies.length > 0) {
+      movies = this.state.movies;
+
+    } else if (searchTerm.length == 0 &&
+               this.state.movies.length > 0) {
+      movies = [];
+
+    } else {
+      return;
+    }
+    
+    this.configureHeaderStyle(true, movies);
+
+    this.setState({
+      movies: movies
+    });
   }
 
   render() {
@@ -80,9 +112,7 @@ class Dashboard extends Component {
         <Overlay inEffect={this.state.inOverlayEffect}
                  outEffect={this.state.outOverlayEffect}
                  onClose={ this.closeOverlay.bind(this) }>
-          <UserDashboard moviesPinned={this.props.pinnedMovies}
-                         onUnpinMovie={this.togglePin.bind(this)}
-                         showFormFor={this.showView.bind(this)}
+          <UserDashboard showFormFor={this.showView.bind(this)}
                          windowSize={this.props.windowSize}/>
         </Overlay>
 
@@ -94,16 +124,14 @@ class Dashboard extends Component {
             <span className='header__blank'/>
             <Search className={ 'header_search -flex-row ' +
                                this.state.searchClass}
-                    searchFor={(searchTerm) => {
-                      this.props.searchFor(searchTerm);
-                    }}/>
+                    searchFor={this.searchFor.bind(this)}/>
 
             <Menu className='header__menu -flex-row'
                   showFormFor={this.showView.bind(this)}/>
           </div>
 
-          <MovieDeck movies={this.props.movies}
-                     onPinMovie={this.togglePin.bind(this)}
+          <MovieDeck movies={this.state.movies}
+                     cardKey='dashboard'
                      windowSize={this.props.windowSize}/>
         </div>
       </div>

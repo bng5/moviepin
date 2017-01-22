@@ -66,7 +66,7 @@ const MoviesMock = [
               'S.H.I.E.L.D., finds himself in need of a team to pull ' +
               'the world back from the brink of disaster. Spanning ' +
               'the globe, a daring recruitment effort begins!',
-    isPinned: true
+    isPinned: false
   },
   {
     id: 6,
@@ -94,7 +94,7 @@ const MoviesMock = [
               'S.H.I.E.L.D., finds himself in need of a team to pull ' +
               'the world back from the brink of disaster. Spanning ' +
               'the globe, a daring recruitment effort begins!',
-    isPinned: true
+    isPinned: false
   }
 ];
 

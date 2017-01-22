@@ -21,7 +21,7 @@ const MPFirebase = {
       ],
       callbacks: {
         signInSuccess: (currentUser, credential, redirectUrl) => {
-          successCallback();
+          successCallback(currentUser);
           return true;
         }
       }
@@ -42,6 +42,72 @@ const MPFirebase = {
 
   isJoining: () => {
     return localStorage.getItem('firebaseLogin') == 'true';
+  },
+
+  saveUser: (user) => {
+    Firebase.database()
+            .ref(`users/${user.uid}`)
+            .update({
+              id: user.uid,
+              name: user.displayName,
+              email: user.email
+            }, (error) => {
+              if (error) {
+                console.log(error);
+              }
+            });
+  },
+
+  saveMovie: (movie) => {
+    const user = Firebase.auth().currentUser;
+    const movieProperties = {
+      id: movie.id,
+      title: movie.title,
+      year: movie.year,
+      poster: movie.poster,
+      overview: movie.overview,
+      users: {}
+    };
+    let dataToSave = {};
+
+    movieProperties.users[user.uid] = true
+
+    dataToSave[`users/${user.uid}/movies/${movie.id}`] = true;
+    dataToSave[`movies/${movie.id}`] = movieProperties;
+
+    Firebase.database().ref().update(dataToSave, (error) => {
+      if (error) {
+        console.log(error) 
+      }
+    });
+  },
+
+  deleteMovie: (movie) => {
+    const user = Firebase.auth().currentUser;
+    
+    Firebase.database()
+            .ref(`users/${user.uid}/movies/${movie.id}`)
+            .remove();
+  },
+
+  onPinnedMovie: (callback) => {
+    const user = Firebase.auth().currentUser;
+
+    Firebase.database()
+            .ref(`users/${user.uid}/movies`)
+            .on('child_added', (movie) => {
+              callback(movie);
+            });
+  },
+
+  onUnpinnedMovie: (callback) => {
+    const user = Firebase.auth().currentUser;
+
+    Firebase.database()
+            .ref(`users/${user.uid}/movies`)
+            .on('child_removed', (movie) => {
+              callback(movie);
+            });
   }
 };
 

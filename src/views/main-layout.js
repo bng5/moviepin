@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 import MPFirebase from '../services/firebase';
 import Utils from '../utils';
 
-import MoviesMock from '../mocks/movies';
-
 import Landing from './landing';
 import Dashboard from './dashboard';
 
@@ -16,9 +14,7 @@ class MainLayout extends Component {
     MPFirebase.firebaseConfig();
 
     this.state = {
-      windowSize: Utils.windowSize(),
-      movies: [],
-      pinnedMovies: []
+      windowSize: Utils.windowSize()
     };
   }
 
@@ -28,55 +24,17 @@ class MainLayout extends Component {
     });
   }
 
-  getPinnedMovies() {
-    const pinnedMovies = MoviesMock.filter((movie) => {
-      return movie.isPinned;
-    });
-
-    this.setState({
-      pinnedMovies: pinnedMovies
-    });
-  }
-
   componentDidMount() {
 
     if (typeof window != 'undefined') {
       window.addEventListener('resize', this.onResize.bind(this));
     }
-
-    this.getPinnedMovies();
   }
 
   componentWillUnmount () {
     if( typeof window !== 'undefined' ) {
       window.removeEventListener('resize', this.onResize)
     }
-  }
-
-  searchFor(searchTerm) {
-    let movies = [];
-
-    if (searchTerm.length >=3) {
-      movies = MoviesMock.filter((movie) => {
-        return movie.title.match(searchTerm);
-      });
-
-    } else if (searchTerm.length < 3 &&
-               searchTerm.length > 0 &&
-               this.state.movies.length > 0) {
-      movies = this.state.movies;
-
-    } else if (searchTerm.length == 0 &&
-               this.state.movies.length > 0) {
-      movies = [];
-
-    } else {
-      return;
-    }
-    
-    this.setState({
-      movies: movies
-    });
   }
 
   shouldAccess(canAccess) {
@@ -97,10 +55,7 @@ class MainLayout extends Component {
 
   dashboard() {
     return (
-      <Dashboard movies={this.state.movies}
-                 pinnedMovies={this.state.pinnedMovies}
-                 windowSize={this.state.windowSize}
-                 searchFor={this.searchFor.bind(this)}/>
+      <Dashboard windowSize={this.state.windowSize}/>
     );
   }
 

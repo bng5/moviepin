@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import Firebase from 'firebase';
+
+import MPFirebase from '../services/firebase';
 import MovieDeck from '../components/movie-deck';
 import UserMenu from '../components/user-menu';
 
@@ -8,39 +11,76 @@ class UserDashboard extends Component {
     super(props);
 
     this.state = {
-      viewToShow: this.moviesPinned(),
+      viewToShow: 'videoteque',
       exploreView: this.exploreInConstruction(),
-      followView: this.followInConstruction()
+      followView: this.followInConstruction(),
+      pinnedMovies: [],
+      shouldUpdate: true
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.moviesPinned != this.props.moviesPinned) {
-      this.setState({
-        viewToShow: this.moviesPinned(nextProps.moviesPinned)
+  componentDidMount() {
+    const user = Firebase.auth().currentUser;
+
+    MPFirebase.onPinnedMovie((movie) => {
+      Firebase.database().ref(`movies/${movie.key}`)
+              .once('value').then((snapshot) => {
+                let movie = snapshot.val();
+                let pinnedMovies = this.state.pinnedMovies;
+                movie.isPinned = true;
+
+                pinnedMovies.push(movie);
+
+                this.setState({
+                  pinnedMovies: pinnedMovies
+                });
+              });
+    });
+
+    MPFirebase.onUnpinnedMovie((movie) => {
+
+      let pinnedMovies = this.state.pinnedMovies.filter((pinnedMovie) => {
+        return pinnedMovie.id != movie.key;
       });
+
+      this.setState({
+        pinnedMovies: pinnedMovies
+      });
+
+    });
+  }
+
+  moviesPinned() {
+    if (this.state.viewToShow == 'videoteque') {
+      const movies = this.state ? this.state.pinnedMovies : [];
+
+      return (
+        <MovieDeck movies={movies}
+                   className='-for-user'
+                   cardKey='user'
+                   windowSize={this.props.windowSize}/>
+      );
+
+    } else {
+      return null;    
     }
   }
 
-  moviesPinned(movies = this.props.moviesPinned) {
-    return (
-      <MovieDeck movies={movies}
-                 className='-for-user'
-                 onPinMovie={(movie) => {
-                   this.props.onUnpinMovie(movie)}}
-                 windowSize={this.props.windowSize}/>
-    );
-  }
-
   inConstruction(viewDetail) {
-    return (
-      <div className='in-construction -full-screen -flex-column -middle'>
-        <h3 className='-emphasis'>
-          Sorry this section is still being implemented
-        </h3>
-        {viewDetail}
-      </div>
-    );
+    if (this.state.viewToShow == 'follow' ||
+        this.state.viewToShow == 'explore') {
+      return (
+        <div className='in-construction -full-screen -flex-column -middle'>
+          <h3 className='-emphasis'>
+            Sorry this section is still being implemented
+          </h3>
+          {viewDetail}
+        </div>
+      );
+
+    } else {
+      return null;    
+    }
   }
 
   exploreInConstruction() {
@@ -66,30 +106,26 @@ class UserDashboard extends Component {
   showView(viewToShow) {
     if (viewToShow == 'dashboard-menu') {
       this.props.showFormFor(viewToShow);
+
     } else {
-
-      let view;
-
-      if (viewToShow == 'videoteque') {
-        view = this.moviesPinned();
-      } else {
-        view = this.inConstruction(this.state[`${viewToShow}View`]);
-      }
-
       this.setState({
-        viewToShow: view
+        viewToShow: viewToShow
       });
     }
   }
 
   render() {
+    
     return (
       <div className='container -full-screen -allow-overflow-y'>
         <UserMenu className={'header__menu -flex-row ' +
                              '-transparent -as-header -for-user'}
               showFormFor={this.showView.bind(this)}/>
 
-        {this.state.viewToShow}
+        {this.moviesPinned()}
+
+        {this.inConstruction('explore')}
+        {this.inConstruction('follow')}
       </div>
     );
   }

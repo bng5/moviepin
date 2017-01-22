@@ -11,7 +11,8 @@ class Landing extends Component {
   constructor() {
     super();
 
-    MPFirebase.configureFirebaseUI('#moviepin-firebaseui', () => {
+    MPFirebase.configureFirebaseUI('#moviepin-firebaseui', (user) => {
+      MPFirebase.saveUser(user);
       MPFirebase.didJoin();
       this.props.shouldAccess(true);
     });
@@ -47,7 +48,6 @@ class Landing extends Component {
         </p>
       </div>
     );
-
   }
 
   loginWithFirebase() {

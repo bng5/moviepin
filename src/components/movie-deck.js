@@ -49,15 +49,12 @@ class MovieDeck extends Component {
 
   card(movie, shouldDetail) {
     return (
-      <MovieCard key={'card-' + movie.id}
+      <MovieCard key={this.props.cardKey + ' card-' + movie.id}
                  movie={movie}
                  shouldDetail={shouldDetail}
                  isSameRow={this.state.isSameRow}
                  movieIndex={this.state.movieIndex}
-                 showDetail={this.showDetail.bind(this)}
-                 onPinMovie={(movie) => {
-                   this.props.onPinMovie(movie);
-                 }}/>
+                 showDetail={this.showDetail.bind(this)}/>
     );
   }
 

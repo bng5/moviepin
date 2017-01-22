@@ -19,9 +19,15 @@ class Search extends Component {
     this.props.searchFor(searchTerm);
   }
 
+  onSubmit(event) {
+    event.preventDefault();
+  }
+
   render() {
     return (
-      <form className={'form -search ' + this.props.className}>
+      <form className={'form -search ' + this.props.className}
+            autoComplete='off'
+            onSubmit={this.onSubmit.bind(this)}>
           <InputField className='-search'
                       fieldValue={this.state.searchValue}
                       inputType='text'
