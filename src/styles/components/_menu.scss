@@ -45,3 +45,19 @@
     }
   }
 }
+
+@media (min-width: $medium) {
+  .menu {
+    &__link {
+      font-size: 3em;
+
+      &#follow-menu {
+        font-size: 2.2em;
+      }
+
+      &#dashboard-menu {
+        font-size: 1.7em;
+      }
+    }
+  }
+}

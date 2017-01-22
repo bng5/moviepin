@@ -58,8 +58,10 @@
     }
 
     &__text-input {
+      font-size: 2.5em;
+
       &.-search {
-        max-width: 15.125em;
+        max-width: 25.125em;
         width: 50%;
       }
     }

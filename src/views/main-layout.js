@@ -101,17 +101,16 @@ class MainLayout extends Component {
   }
 
   render() {
-    return this.dashboard();
-    // let displayToShow;
+    let displayToShow;
 
-    // if (!this.state.canAccess) {
-    //   displayToShow = this.landing();
-    // } else {
-    //   displayToShow = this.dashboard();
-    // }
-    // return (
-    //   displayToShow
-    // );
+    if (!this.state.canAccess) {
+      displayToShow = this.landing();
+    } else {
+      displayToShow = this.dashboard();
+    }
+    return (
+      displayToShow
+    );
   }
 }
 
