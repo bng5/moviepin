@@ -229,6 +229,16 @@
   }
 }
 
+@keyframes loadingDot {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: .1;
+  }
+}
+
 @media (min-width: $medium) {
   @keyframes openDetail {
     0% {

@@ -14,7 +14,7 @@ class MainLayout extends Component {
   constructor() {
     super();
 
-    Firebase.initializeApp(this.firebaseConfig())
+    this.firebaseConfig();
 
     this.state = {
       windowSize: Utils.windowSize(),
@@ -24,13 +24,15 @@ class MainLayout extends Component {
   }
 
   firebaseConfig() {
-    return {
+    const config = {
       apiKey: "AIzaSyCq9Nl7z5DB5oh9F_F18rOi2pT27OLfwZQ",
       authDomain: "moviepin-33835.firebaseapp.com",
       databaseURL: "https://moviepin-33835.firebaseio.com",
       storageBucket: "moviepin-33835.appspot.com",
       messagingSenderId: "958350717889"
     };
+
+    Firebase.initializeApp(config)
   }
 
   onResize() {

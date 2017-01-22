@@ -23,6 +23,47 @@
     }
   }
 
+// scss-lint:disable NestingDepth
+  &__loading {
+    background-color: $secondary-color;
+    position: absolute;
+
+    .loading {
+      &__label {
+        font-size: 3em;
+        margin: 0;
+      }
+
+      &__dots {
+        font-family: 'QuickSand', sans-serif;
+        font-size: 15em;
+        line-height: 0;
+        margin: 0;
+        transform: translateY(-.2em);
+
+        .dot {
+          animation: loadingDot 5s infinite ease-in-out;
+          opacity: .1;
+
+          &.-gray {
+            animation-delay: 1s;
+            color: $primary-color;
+          }
+
+          &.-emphasis {
+            animation-delay: 2s;
+          }
+
+          &.-alternative {
+            animation-delay: 3s;
+            color: $alternative-emphasis-color;
+          }
+        }
+      }
+    }
+  }
+// scss-lint:enable NestingDepth
+
   .-full-screen {
     height: 100vh;
     width: 100%;

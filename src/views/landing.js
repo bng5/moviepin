@@ -25,8 +25,7 @@ class Landing extends Component {
         this.props.shouldAccess(canAccess);
       }}/>,
       inOverlayEffect: '',
-      outOverlayEffect: '',
-      formToShow: ''
+      outOverlayEffect: ''
     };
   }
 
@@ -38,6 +37,8 @@ class Landing extends Component {
       callbacks: {
         signInSuccess: (currentUser, credential, redirectUrl) => {
           this.props.shouldAccess(true);
+          localStorage.setItem('firebaseLogin', false);
+
           return true;
         }
       }
@@ -48,11 +49,10 @@ class Landing extends Component {
     firebaseUI.start('#moviepin-firebaseui', uiConfig);
   }
 
-  showFormFor(form) {
+  showFormFor() {
     this.setState({
       inOverlayEffect: '-content-push',
-      outOverlayEffect: '',
-      formToShow: `${form}Form`
+      outOverlayEffect: ''
     });
   }
 
@@ -62,19 +62,48 @@ class Landing extends Component {
     });
   }
 
-  render() {
-    const accessForm = this.state[this.state.formToShow];
+  loadingOverlay() {
 
+    return (
+      <div className='container__loading -full-screen -flex-column -middle'>
+        <h2 className='loading__label -emphasis'>Loading</h2>
+        <p className='loading__dots'>
+          <span className='dot -gray'>.</span>
+          <span className='dot -emphasis'>.</span>
+          <span className='dot -alternative'>.</span>
+        </p>
+      </div>
+    );
+
+  }
+
+  loginWithFirebase() {
+    localStorage.setItem('firebaseLogin', true);
+  }
+
+  componentDidMount() {
+    if (localStorage.getItem('firebaseLogin') == 'true') {
+      this.setState({
+        firebaseLoading: this.loadingOverlay()
+      });
+    }
+  }
+
+  render() {
     const inOverlayEffect = this.state.inOverlayEffect;
     const outOverlayEffect = this.state.outOverlayEffect;
+    const loadingOverlay = this.state.firebaseLoading;
 
     return (
       <div className='container'>
         <Overlay inEffect={this.state.inOverlayEffect}
                  outEffect={this.state.outOverlayEffect}
                  onClose={ this.closeOverlay.bind(this) }>
-          <div id='moviepin-firebaseui'/>
+          <div id='moviepin-firebaseui'
+               onMouseDown={this.loginWithFirebase.bind(this)}/>
         </Overlay>
+
+        {loadingOverlay}
 
         <div className={'container__landing -full-screen -flex-column ' +
                         inOverlayEffect + ' ' + outOverlayEffect}>
