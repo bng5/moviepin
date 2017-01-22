@@ -13,7 +13,7 @@ describe ('renders <LandingView>', () => {
     const wrapper = shallow(<Landing/>).find('.container__landing');
 
     expect(wrapper.find('AccessMenu').length).toBe(1);
-    expect(wrapper.find('.branding__logo').length).toBe(1);
+    expect(wrapper.find('.landing__branding').length).toBe(1);
     expect(wrapper.find('.landing__headline').length).toBe(1);
   });
 });
