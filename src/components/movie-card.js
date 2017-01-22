@@ -37,6 +37,21 @@ class MovieCard extends Component {
     return arrowClass.join(' ');
   }
 
+  shouldBePinned(movie = this.props.movie) {
+    if (movie.isPinned) {
+      this.setState({ pinit: '-unpin' });
+    } else {
+      this.setState({ pinit: '-pin' });
+    }
+  }
+
+  componentDidMount() {
+    this.shouldBePinned(this.props.movie);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.shouldBePinned(nextProps.movie);
+  }
 
   render() {
     const detailClass = this.detailClassForIndex();

@@ -123,7 +123,8 @@ class MovieDeck extends Component {
     return (
       <ReactCSSTransitionGroup key={'rcsstg'}
                                component='div'
-                               className='container__deck -flex-row'
+                               className={'container__deck -flex-row ' +
+                                          this.props.className}
                                transitionName={{
                                  enter: 'enter',
                                  enterActive: 'show',

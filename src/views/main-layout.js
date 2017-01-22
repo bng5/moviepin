@@ -14,7 +14,8 @@ class MainLayout extends Component {
 
     this.state = {
       windowSize: Utils.windowSize(),
-      movies: []
+      movies: [],
+      pinnedMovies: []
     };
   }
 
@@ -24,10 +25,22 @@ class MainLayout extends Component {
     });
   }
 
+  getPinnedMovies() {
+    const pinnedMovies = MoviesMock.filter((movie) => {
+      return movie.isPinned;
+    });
+
+    this.setState({
+      pinnedMovies: pinnedMovies
+    });
+  }
+
   componentDidMount() {
     if (typeof window != 'undefined') {
       window.addEventListener('resize', this.onResize.bind(this));
     }
+
+    this.getPinnedMovies();
   }
 
   componentWillUnmount () {
@@ -81,22 +94,24 @@ class MainLayout extends Component {
   dashboard() {
     return (
       <Dashboard movies={this.state.movies}
+                 pinnedMovies={this.state.pinnedMovies}
                  windowSize={this.state.windowSize}
                  searchFor={this.searchFor.bind(this)}/>
     );
   }
 
   render() {
-    let displayToShow;
+    return this.dashboard();
+    // let displayToShow;
 
-    if (!this.state.canAccess) {
-      displayToShow = this.landing();
-    } else {
-      displayToShow = this.dashboard();
-    }
-    return (
-      displayToShow
-    );
+    // if (!this.state.canAccess) {
+    //   displayToShow = this.landing();
+    // } else {
+    //   displayToShow = this.dashboard();
+    // }
+    // return (
+    //   displayToShow
+    // );
   }
 }
 

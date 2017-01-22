@@ -11,15 +11,37 @@
 
     &:first-child {
       margin-bottom: 1em;
+      margin-left: 1.5em;
+    }
+
+    &:last-child {
+      margin-right: 2em;
     }
 
     &.-for-dashboard {
       margin-top: .5em;
+    }
+
+    &.-to-left {
+      text-align: left;
+    }
+
+    &.-fix-height-for-user {
+      padding-top: .3em;
     }
   }
 
   &__link {
     cursor: pointer;
     font-size: 2em;
+
+    &#follow-menu,
+    &#dashboard-menu {
+      font-size: 1.4em;
+    }
+
+    &.-active {
+      color: $primary-color;
+    }
   }
 }

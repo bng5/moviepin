@@ -8,7 +8,8 @@ const MoviesMock = [
     overview: 'The hopes and dreams of four ambitious people are ' +
               'shattered when their drug addictions begin spiraling ' +
               'out of control. A look into addiction and how it ' +
-              'overcomes the mind and body.'
+              'overcomes the mind and body.',
+    isPinned: false
   },
   {
     id: 2,
@@ -21,7 +22,8 @@ const MoviesMock = [
               'international peacekeeping agency known as ' +
               'S.H.I.E.L.D., finds himself in need of a team to pull ' +
               'the world back from the brink of disaster. Spanning ' +
-              'the globe, a daring recruitment effort begins!'
+              'the globe, a daring recruitment effort begins!',
+    isPinned: false
   },
   {
     id: 3,
@@ -34,7 +36,8 @@ const MoviesMock = [
               'international peacekeeping agency known as ' +
               'S.H.I.E.L.D., finds himself in need of a team to pull ' +
               'the world back from the brink of disaster. Spanning ' +
-              'the globe, a daring recruitment effort begins!'
+              'the globe, a daring recruitment effort begins!',
+    isPinned: false
   },
   {
     id: 4,
@@ -47,7 +50,8 @@ const MoviesMock = [
               'international peacekeeping agency known as ' +
               'S.H.I.E.L.D., finds himself in need of a team to pull ' +
               'the world back from the brink of disaster. Spanning ' +
-              'the globe, a daring recruitment effort begins!'
+              'the globe, a daring recruitment effort begins!',
+    isPinned: false
   },
   {
     id: 5,
@@ -61,7 +65,8 @@ const MoviesMock = [
               'international peacekeeping agency known as ' +
               'S.H.I.E.L.D., finds himself in need of a team to pull ' +
               'the world back from the brink of disaster. Spanning ' +
-              'the globe, a daring recruitment effort begins!'
+              'the globe, a daring recruitment effort begins!',
+    isPinned: true
   },
   {
     id: 6,
@@ -74,7 +79,8 @@ const MoviesMock = [
               'international peacekeeping agency known as ' +
               'S.H.I.E.L.D., finds himself in need of a team to pull ' +
               'the world back from the brink of disaster. Spanning ' +
-              'the globe, a daring recruitment effort begins!'
+              'the globe, a daring recruitment effort begins!',
+    isPinned: false
   },
   {
     id: 7,
@@ -87,7 +93,8 @@ const MoviesMock = [
               'international peacekeeping agency known as ' +
               'S.H.I.E.L.D., finds himself in need of a team to pull ' +
               'the world back from the brink of disaster. Spanning ' +
-              'the globe, a daring recruitment effort begins!'
+              'the globe, a daring recruitment effort begins!',
+    isPinned: true
   }
 ];
 

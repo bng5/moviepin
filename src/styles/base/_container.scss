@@ -1,6 +1,7 @@
 .container {
   background-color: $secondary-color;
   overflow: hidden;
+  position: relative;
 
   &__landing {
     background-image: url('../images/film-poster.jpg');
@@ -14,8 +15,12 @@
   &__deck {
     flex-wrap: wrap;
     justify-content: center;
-    padding: 6em .1em 5em;
+    padding: 6em .1em 1em;
     width: 100%;
+
+    &.-for-user {
+      padding-top: 4em;
+    }
   }
 
   .-full-screen {
@@ -25,6 +30,10 @@
     &.-animated {
       animation: downFromHeader 1.7s cubic-bezier(.09, .54, .53, .65) forwards;
     }
+
+    &.-allow-overflow-y {
+      overflow-y: auto;
+    }
   }
 
   .-as-header {
@@ -33,6 +42,10 @@
     position: fixed;
     width: 100%;
     z-index: $container-as-header;
+  }
+
+  .-for-user {
+    animation: upToHeaderForUser 1.7s cubic-bezier(.09, .54, .53, .65) forwards;
   }
 
   .-transparent {
@@ -76,6 +89,15 @@
   }
 }
 
+.in-construction {
+  font-size: 1.7em;
+  text-align: center;
+
+  &__detail {
+    padding: 0 1em;
+  }
+}
+
 .-regular {
   color: $navigation-color;
 }
@@ -116,6 +138,11 @@
 
 .-right-top {
   @extend %align-right;
+  @extend %align-top;
+}
+
+.-left-top {
+  @extend %align-left;
   @extend %align-top;
 }
 

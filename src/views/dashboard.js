@@ -6,33 +6,34 @@ import Overlay from '../components/overlay';
 import Menu from '../components/menu';
 import Search from '../components/search';
 import MovieDeck from '../components/movie-deck';
+import UserDashboard from './user-dashboard';
 
 class Dashboard extends Component {
 
   constructor(props) {
     super(props);
 
-    this.inOverlayEffectes = {
-      'user-menu': '-content-push -right'
+    this.inOverlayEffects = {
+      'user-menu': '-content-push -right',
+      'dashboard-menu': '-content-push -right -hidden'
     }
 
     this.state = {
       inOverlayEffect: '',
       outOverlayEffect: '',
       headerClass: '-full-screen',
-      searchClass: '-right-center',
-      overlayView: ''
+      searchClass: '-right-center'
     };
   }
 
   showView(viewToShow) {
     this.setState({
-      inOverlayEffect: this.inOverlayEffectes[viewToShow],
+      inOverlayEffect: this.inOverlayEffects[viewToShow],
       outOverlayEffect: ''
     });
   }
 
-  pinMovie(movie) {
+  togglePin(movie) {
     console.log('pin movie' + movie.id)
   }
 
@@ -79,7 +80,10 @@ class Dashboard extends Component {
         <Overlay inEffect={this.state.inOverlayEffect}
                  outEffect={this.state.outOverlayEffect}
                  onClose={ this.closeOverlay.bind(this) }>
-          {this.state.overlayView}
+          <UserDashboard moviesPinned={this.props.pinnedMovies}
+                         onUnpinMovie={this.togglePin.bind(this)}
+                         showFormFor={this.showView.bind(this)}
+                         windowSize={this.props.windowSize}/>
         </Overlay>
 
         <div className={'container__dashboard ' +
@@ -99,7 +103,7 @@ class Dashboard extends Component {
           </div>
 
           <MovieDeck movies={this.props.movies}
-                     onPinMovie={this.pinMovie.bind(this)}
+                     onPinMovie={this.togglePin.bind(this)}
                      windowSize={this.props.windowSize}/>
         </div>
       </div>

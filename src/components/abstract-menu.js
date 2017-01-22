@@ -6,6 +6,7 @@ class MenuLink extends Component {
       <li className={'menu__item ' + this.props.menuItemClassName}>
         <a id={this.props.linkId}
            className={'menu__link -regular ' + this.props.menuLinkClassName}
+           alt={this.props.altLink}
            onClick={() => {
              this.props.onClick();
            }}>{this.props.label}</a>
