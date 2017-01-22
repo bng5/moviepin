@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 
-import Firebase from 'firebase';
-import FirebaseUI from 'firebaseui';
-
+import MPFirebase from '../services/firebase';
 import Overlay from '../components/overlay';
 import AccessMenu from '../components/access-menu';
-import SignIn from '../components/signin';
-import Join from '../components/join';
 
 import Logo from '../images/logo.png';
 
@@ -15,38 +11,15 @@ class Landing extends Component {
   constructor() {
     super();
 
-    this.configureFirebaseUI();
+    MPFirebase.configureFirebaseUI('#moviepin-firebaseui', () => {
+      MPFirebase.didJoin();
+      this.props.shouldAccess(true);
+    });
 
     this.state = {
-      signinForm: <SignIn shouldAccess={(canAccess) => {
-        this.props.shouldAccess(canAccess);
-      }}/>,
-      joinForm: <Join shouldAccess={(canAccess) => {
-        this.props.shouldAccess(canAccess);
-      }}/>,
       inOverlayEffect: '',
       outOverlayEffect: ''
     };
-  }
-
-  configureFirebaseUI() {
-    const uiConfig = {
-      signInOptions: [
-        Firebase.auth.FacebookAuthProvider.PROVIDER_ID
-      ],
-      callbacks: {
-        signInSuccess: (currentUser, credential, redirectUrl) => {
-          this.props.shouldAccess(true);
-          localStorage.setItem('firebaseLogin', false);
-
-          return true;
-        }
-      }
-    };
-    
-    const firebaseUI = new FirebaseUI.auth.AuthUI(Firebase.auth());
-
-    firebaseUI.start('#moviepin-firebaseui', uiConfig);
   }
 
   showFormFor() {
@@ -78,11 +51,11 @@ class Landing extends Component {
   }
 
   loginWithFirebase() {
-    localStorage.setItem('firebaseLogin', true);
+    MPFirebase.willJoin();
   }
 
   componentDidMount() {
-    if (localStorage.getItem('firebaseLogin') == 'true') {
+    if (MPFirebase.isJoining()) {
       this.setState({
         firebaseLoading: this.loadingOverlay()
       });
