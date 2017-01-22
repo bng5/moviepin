@@ -5,7 +5,7 @@ import AccessMenu from '../components/access-menu';
 import SignIn from '../components/signin';
 import Join from '../components/join';
 
-import Logo from './images/logo.png';
+import Logo from '../images/logo.png';
 
 class Landing extends Component {
 
@@ -63,7 +63,7 @@ class Landing extends Component {
                           '-priority2 -center-bottom'}>
             <h1 className='logo__name'>
               <span className='-hidden'>MoviePin</span>
-              <img className='-as-image' src={Logo} alt='moviepin'/>
+              <img className='-as-image' src='./images/logo.png' alt='moviepin'/>
             </h1>
           </div>
 
