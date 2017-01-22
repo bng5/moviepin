@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Styles from './styles/main.scss';
+import Index from './index.html';
 
 import MainLayout from './views/main-layout';
 
