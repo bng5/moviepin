@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
 
 import MPFirebase from '../services/firebase';
 import Utils from '../utils';
