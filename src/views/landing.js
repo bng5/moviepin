@@ -11,10 +11,15 @@ class Landing extends Component {
   constructor() {
     super();
 
-    MPFirebase.configureFirebaseUI('#moviepin-firebaseui', (user) => {
-      MPFirebase.saveUser(user);
+    if (window.location.hash == '#/reset') {
       MPFirebase.didJoin();
+      window.location.hash = '';
+    }
+
+    MPFirebase.configureFirebaseUI('#moviepin-firebaseui', (user) => {
       this.props.shouldAccess(true);
+      MPFirebase.didJoin();
+      MPFirebase.saveUser(user);
     });
 
     this.state = {
