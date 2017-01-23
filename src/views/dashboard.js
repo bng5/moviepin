@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import _ from 'lodash';
 
-import MoviesMock from '../mocks/movies';
-
 import MPFirebase from '../services/firebase';
 import Overlay from '../components/overlay';
 import Menu from '../components/menu';
@@ -26,7 +24,8 @@ class Dashboard extends Component {
       outOverlayEffect: '',
       headerClass: '-full-screen',
       searchClass: '-right-center',
-      movies: []
+      movies: [],
+      pinnedIds: []
     };
   }
 
@@ -64,41 +63,76 @@ class Dashboard extends Component {
 
   componentDidMount() {
     MPFirebase.onPinnedMovie((pinnedMovie) => {
-      if (this.state.movies.length >0) {
-        let movieToPin =this.state.movies.find((movie) => {
-          return pinnedMovie.key == movie.id;
-        });
+      let pinnedIds = this.state.pinnedIds;
+      pinnedIds.push(pinnedMovie.key);
 
-        movieToPin.isPinned = true;
-      }
+      this.setState({
+        pinnedIds: pinnedIds
+      });
+    });
+
+    MPFirebase.onUnpinnedMovie((movie) => {
+      let pinnedIds = _.filter(this.state.pinnedIds, (pinnedId) => {
+        return pinnedId != movie.key
+      });
+
+      this.setState({
+        pinnedIds: pinnedIds
+      });
     });
   }
 
-  searchFor(searchTerm) {
-    let movies = [];
+  searchTheMovieDB(searchTerm, success) {
+    var data = "{}";
 
-    if (searchTerm.length >=3) {
-      movies = MoviesMock.filter((movie) => {
-        return movie.title.match(searchTerm);
+    var xhr = new XMLHttpRequest();
+
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === this.DONE) {
+        success(this.responseText);
+      }
+    });
+
+    xhr.open("GET", 'https://api.themoviedb.org/3/' +
+                    'search/movie?include_adult=false&page=1' +
+                    '&query=' + searchTerm +
+                    '&language=en-US&api_key=b27b7226b1668de47e543bd5f6e00fe4');
+    xhr.send(data);
+  }
+
+  searchFor(searchTerm) {
+    this.searchTheMovieDB(searchTerm, (data) => {
+      const moviesResult = JSON.parse(data);
+
+      const movies = _.map(moviesResult.results, (movieResult) => {
+        let posterPath = ''; 
+        let moviePosterPath = movieResult.poster_path;
+        let isPinned = false;
+
+        if (!_.isEmpty(moviePosterPath)) {
+          const imageDomain = 'http://image.tmdb.org/t/p/w185';
+          posterPath = imageDomain.concat(moviePosterPath);
+        }
+
+        if (_.includes(this.state.pinnedIds, movieResult.id.toString())) {
+          isPinned = true;
+        }
+
+        return {
+          id: movieResult.id,
+          title: movieResult.original_title,
+          year: movieResult.release_date,
+          poster: posterPath, 
+          overview: movieResult.overview,
+          isPinned: isPinned
+        };
       });
 
-    } else if (searchTerm.length < 3 &&
-               searchTerm.length > 0 &&
-               this.state.movies.length > 0) {
-      movies = this.state.movies;
+      this.configureHeaderStyle(true, movies);
 
-    } else if (searchTerm.length == 0 &&
-               this.state.movies.length > 0) {
-      movies = [];
-
-    } else {
-      return;
-    }
-    
-    this.configureHeaderStyle(true, movies);
-
-    this.setState({
-      movies: movies
+      this.setState({
+        movies: movies
+      });
     });
   }
 
