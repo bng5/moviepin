@@ -113,7 +113,6 @@ class MovieDeck extends Component {
     return deck;
   }
 
-
   render() {
     if (_.isEmpty(this.props.movies)) { return null;}
 

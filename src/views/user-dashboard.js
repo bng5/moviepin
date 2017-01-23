@@ -20,7 +20,6 @@ class UserDashboard extends Component {
   }
 
   componentDidMount() {
-    const user = Firebase.auth().currentUser;
 
     MPFirebase.onPinnedMovie((movie) => {
       Firebase.database().ref(`movies/${movie.key}`)
