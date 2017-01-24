@@ -17,3 +17,9 @@ $> npm start
 ```
 $> npm test
 ```
+
+## Build
+
+```
+$> npm build
+```
