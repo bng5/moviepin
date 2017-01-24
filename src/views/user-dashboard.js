@@ -52,13 +52,19 @@ class UserDashboard extends Component {
   moviesPinned() {
     if (this.state.viewToShow == 'videoteque') {
       const movies = this.state ? this.state.pinnedMovies : [];
+      
+      if (movies.length > 0) {
 
-      return (
-        <MovieDeck movies={movies}
-                   className='-for-user'
-                   cardKey='user'
-                   windowSize={this.props.windowSize}/>
-      );
+        return (
+          <MovieDeck movies={movies}
+                     className='-for-user'
+                     cardKey='user'
+                     windowSize={this.props.windowSize}/>
+        );
+
+      } else {
+        return this.addMoviesPlease();
+      }
 
     } else {
       return null;    
@@ -80,6 +86,17 @@ class UserDashboard extends Component {
     } else {
       return null;    
     }
+  }
+
+  addMoviesPlease() {
+    return (
+      <div className='in-construction -full-screen -flex-column -middle'>
+        <h3 className='in-construction__detail'>
+          You don't have any <span className='-emphasis'>movie </span>
+          to recommend?
+        </h3>
+      </div>
+    );
   }
 
   exploreInConstruction() {
