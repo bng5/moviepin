@@ -25,7 +25,6 @@ class MainLayout extends Component {
   }
 
   componentDidMount() {
-
     if (typeof window != 'undefined') {
       window.addEventListener('resize', this.onResize.bind(this));
     }

@@ -7,11 +7,11 @@ import Index from './index.html';
 
 import MainLayout from './views/main-layout';
 
-const render = (component) => {
+const render = () => {
   ReactDOM.render(
-    component,
+    <MainLayout/>,
     document.getElementById('root')
   );
 };
 
-render(<MainLayout/>)
+render();
