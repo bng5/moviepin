@@ -146,8 +146,7 @@ class Dashboard extends Component {
         <Overlay inEffect={this.state.inOverlayEffect}
                  outEffect={this.state.outOverlayEffect}
                  onClose={ this.closeOverlay.bind(this) }>
-          <UserDashboard showFormFor={this.showView.bind(this)}
-                         windowSize={this.props.windowSize}/>
+          <UserDashboard showFormFor={this.showView.bind(this)}/>
         </Overlay>
 
         <div className={'container__dashboard ' +
@@ -165,8 +164,7 @@ class Dashboard extends Component {
           </div>
 
           <MovieDeck movies={this.state.movies}
-                     cardKey='dashboard'
-                     windowSize={this.props.windowSize}/>
+                     cardKey='dashboard'/>
         </div>
       </div>
     );

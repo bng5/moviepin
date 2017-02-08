@@ -3,9 +3,9 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import _ from 'lodash';
 
-import Utils from '../utils';
 import MovieCard from './movie-card';
-import DummyCard from './dummy-card';
+import DummyCardContainer from '../containers/cards';
+
 import CardDetail from './card-detail';
 
 class MovieDeck extends Component {
@@ -14,7 +14,7 @@ class MovieDeck extends Component {
     super(props);
 
     this.state = {
-      cardsPerRow: Math.floor(this.props.windowSize.width / Utils.cardSize()),
+      cardsPerRow: 3,
       movieIndex: 0,
       addDetailAfter: 0,
       detailInRow: 0,
@@ -70,10 +70,7 @@ class MovieDeck extends Component {
 
   dummy() {
     return (
-      <DummyCard key='dummy-card'
-                 movies={this.props.movies}
-                 cardsPerRow={this.state.cardsPerRow}
-                 windowSize={this.props.windowSize}/>
+      <DummyCardContainer key='dummy-card'/>
     );
   }
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import MPFirebase from '../services/firebase';
-import Utils from '../utils';
 
 import Landing from './landing';
 import Dashboard from './dashboard';
@@ -14,25 +13,7 @@ class MainLayout extends Component {
     MPFirebase.firebaseConfig();
 
     this.state = {
-      windowSize: Utils.windowSize()
-    };
-  }
-
-  onResize() {
-    this.setState({
-      windowSize: Utils.windowSize()
-    });
-  }
-
-  componentDidMount() {
-    if (typeof window != 'undefined') {
-      window.addEventListener('resize', this.onResize.bind(this));
-    }
-  }
-
-  componentWillUnmount () {
-    if( typeof window !== 'undefined' ) {
-      window.removeEventListener('resize', this.onResize)
+      canAccess: false
     }
   }
 
@@ -54,7 +35,7 @@ class MainLayout extends Component {
 
   dashboard() {
     return (
-      <Dashboard windowSize={this.state.windowSize}/>
+      <Dashboard/>
     );
   }
 

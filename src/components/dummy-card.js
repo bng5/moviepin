@@ -1,40 +1,29 @@
 import React, { Component } from 'react';
 
-import Utils from '../utils';
-
 class DummyCard extends Component {
-  constructor(props) {
-    super(props);
-
-
-    this.state = {
-      dummyWidth: this.dummyCardWidth(this.props)
-    };
+  
+  onResize() {
+    this.props.onWindowResize()
   }
 
-  dummyCardWidth(props) {
-    const numberOfMovies = props.movies.length;
-    const cardsPerRow = props.cardsPerRow;
-    const rowsFilled = Math.floor(numberOfMovies/cardsPerRow);
-    const cardsLastRow = numberOfMovies - (cardsPerRow * rowsFilled);
-    const itemsLeft = cardsPerRow - cardsLastRow;
-
-    return itemsLeft * Utils.cardSize();
+  componentDidMount() {
+    if (typeof window != 'undefined') {
+      window.addEventListener('resize', this.onResize.bind(this));
+    }
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      dummyWidth: this.dummyCardWidth(nextProps)
-    });
+  componentWillUnmount () {
+    if( typeof window !== 'undefined' ) {
+      window.removeEventListener('resize', this.onResize)
+    }
   }
 
   render() {
-    const dummyWidth = {width: this.state.dummyWidth + 'px'}
+    const dummyWidth = this.props.dummyWidth + 'px';
 
     return (
-      <div key='dummy-expandable-container'
-           className='container__dummy'
-           style={dummyWidth}/>
+      <div className='container__dummy'
+           style={{width: dummyWidth}}/>
     );
   }
 }

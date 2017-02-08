@@ -58,8 +58,7 @@ class UserDashboard extends Component {
         return (
           <MovieDeck movies={movies}
                      className='-for-user'
-                     cardKey='user'
-                     windowSize={this.props.windowSize}/>
+                     cardKey='user'/>
         );
 
       } else {
